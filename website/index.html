@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sink Microbiome Project</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+    style="font-family: "Georgia", Garamond, serif;">
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <img src="assets/logo.png" alt="Sink Microbiome Project Logo" class="logo">
+            <h1>Sink Microbiome Project</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Project Description -->
+        <section class="project-intro">
+            <p class="intro-text">
+                [Statement about project goals and how to explore the data]
+            </p>
+        </section>
+
+        <!-- Summary Statistics -->
+        <section class="summary-section">
+            <h2>Project Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-samples">--</div>
+                    <div class="stat-label">Samples Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-taxa">--</div>
+                    <div class="stat-label">Distinct Bacteria</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-counties">--</div>
+                    <div class="stat-label">Counties</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map -->
+        <section class="map-section">
+            <h2>Sample Locations</h2>
+            <div id="map-container">
+                <div class="map-placeholder">
+                    <p>Interactive map loading...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Taxa by County -->
+        <section class="county-section">
+            <h2>Most Common Bacteria by County</h2>
+            <div class="county-grid" id="county-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Top Taxa Overall -->
+        <section class="top-taxa-section">
+            <h2>Top 5 Most Common Bacterial Groups</h2>
+            <div class="taxa-list" id="top-taxa-overall">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Participant Lookup -->
+        <section class="lookup-section">
+            <h2>Find Your Results</h2>
+            <p>Enter your Kit ID to view your personalized microbiome results:</p>
+            <div class="lookup-form">
+                <input type="text" id="kit-id-input" placeholder="Enter Kit ID (e.g., 12)">
+                <button id="lookup-btn" onclick="lookupParticipant()">View Results</button>
+            </div>
+            <div id="lookup-error" class="error-message"></div>
+        </section>
+
+        <!-- All Participants -->
+        <section class="participants-section">
+            <h2>Browse All Results</h2>
+            <p>Click on a Kit ID to view detailed results:</p>
+            <div class="participants-grid" id="participants-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Hypothesis Submission -->
+        <section class="hypothesis-section">
+            <h2>What do these results mean? Share your ideas here!</h2>
+            <form class="hypothesis-form" action="https://formsubmit.co/sinkmicrobiome@duke.edu" method="POST">
+                <input type="hidden" name="_subject" value="Sink Microbiome Project - Hypothesis Submission">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <div class="form-group">
+                    <label for="name">Your Name (optional):</label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email (optional):</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="hypothesis">Your Hypothesis:</label>
+                    <textarea id="hypothesis" name="hypothesis" rows="5" placeholder="Share your thoughts about what these results might mean..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Hypothesis</button>
+            </form>
+        </section>
+
+        <!-- Updates Notice -->
+        <section class="updates-notice">
+            <p class="update-text">
+                Make sure to check back! Comparative results are continually updated, as new samples arrive.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p class="contact-text">
+            If you have questions, please contact our team at
+            <a href="mailto:sinkmicrobiome@duke.edu">sinkmicrobiome@duke.edu</a>
+        </p>
+        <p class="last-updated">Last updated: <span id="last-updated">--</span></p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

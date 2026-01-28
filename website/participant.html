@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Results - The Sink Microbiome Project</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/participant.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="Sink Microbiome Project Logo" class="logo">
+            </a>
+            <h1>The Sink Microbiome Project</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Back Navigation -->
+        <nav class="back-nav">
+            <a href="index.html">&larr; Back to Project Overview</a>
+        </nav>
+
+        <!-- Participant Header -->
+        <section class="participant-header">
+            <h2>Results for Kit <span id="kit-id">--</span></h2>
+            <p class="participant-location">
+                <span id="county-name">--</span> County, NC
+            </p>
+        </section>
+
+        <!-- Top Taxa -->
+        <section class="top-taxa-section">
+            <h2>Your Top 5 Bacterial Genera</h2>
+            <p class="section-description">
+                These are the most abundant bacteria found in your sink's tail piece sample.
+            </p>
+            <div class="taxa-list" id="top-taxa-list">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="taxa-summary">
+                <p><strong>Total Taxa Recovered:</strong> <span id="total-taxa">--</span> different bacterial genera</p>
+            </div>
+        </section>
+
+        <!-- Similarity Score -->
+        <section class="similarity-section">
+            <h2>Tail Piece vs. Countertop Similarity</h2>
+            <p class="section-description">
+                This score shows how similar the bacterial communities are between your sink's tail piece (P)
+                and the countertop around the faucet (Y).
+            </p>
+            <div class="similarity-display">
+                <div class="similarity-gauge">
+                    <div class="gauge-fill" id="similarity-fill"></div>
+                </div>
+                <div class="similarity-value">
+                    <span id="similarity-score">--</span>%
+                </div>
+            </div>
+            <p class="similarity-interpretation" id="similarity-interpretation">
+                <!-- Interpretation text -->
+            </p>
+        </section>
+
+        <!-- Alpha Diversity -->
+        <section class="diversity-section">
+            <h2>Alpha Diversity: How Diverse Is Your Sink?</h2>
+            <p class="section-description">
+                Alpha diversity measures the variety of bacteria in your sample. A higher percentile means
+                your sink has more diverse bacterial communities than most other sinks in this study.
+            </p>
+            <div class="percentile-bars">
+                <div class="percentile-item">
+                    <div class="percentile-label">
+                        <span class="metric-name">Species Richness</span>
+                        <span class="percentile-value" id="richness-percentile">--</span>
+                    </div>
+                    <div class="percentile-bar">
+                        <div class="percentile-fill" id="richness-fill"></div>
+                        <div class="percentile-marker" id="richness-marker"></div>
+                    </div>
+                    <p class="metric-description">Number of unique bacterial types</p>
+                </div>
+                <div class="percentile-item">
+                    <div class="percentile-label">
+                        <span class="metric-name">Shannon Diversity</span>
+                        <span class="percentile-value" id="shannon-percentile">--</span>
+                    </div>
+                    <div class="percentile-bar">
+                        <div class="percentile-fill" id="shannon-fill"></div>
+                        <div class="percentile-marker" id="shannon-marker"></div>
+                    </div>
+                    <p class="metric-description">Diversity accounting for abundance evenness</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beta Diversity -->
+        <section class="beta-section">
+            <h2>Beta Diversity: How Does Your Sink Compare?</h2>
+            <p class="section-description">
+                Beta diversity measures how similar your sink's bacteria are to others. Higher values mean
+                more similar communities. Values range from 0 (completely different) to 1 (identical).
+            </p>
+            <div class="beta-comparison">
+                <div class="beta-card">
+                    <h3>Compared to Your County</h3>
+                    <div class="beta-value" id="same-county-value">--</div>
+                    <p class="beta-label">Average similarity to other <span id="county-compare">--</span> County sinks</p>
+                </div>
+                <div class="beta-card">
+                    <h3>Compared to Other Counties</h3>
+                    <div class="beta-value" id="other-county-value">--</div>
+                    <p class="beta-label">Average similarity to sinks in other counties</p>
+                </div>
+            </div>
+            <p class="beta-interpretation" id="beta-interpretation">
+                <!-- Interpretation text -->
+            </p>
+        </section>
+
+        <!-- Functional Guilds -->
+        <section class="guilds-section">
+            <h2>Functional Guilds: What Are Your Bacteria Doing?</h2>
+            <p class="section-description">
+                Bacteria can be grouped by their functions. These percentiles show how your sink compares
+                to others for each functional category.
+            </p>
+            <div class="guilds-list" id="guilds-list">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Hypothesis Submission -->
+        <section class="hypothesis-section">
+            <h2>Have a hypothesis about these results? Share them here!</h2>
+            <form class="hypothesis-form" action="https://formsubmit.co/sinkmicrobiome@duke.edu" method="POST">
+                <input type="hidden" name="_subject" value="Sink Microbiome Project - Hypothesis Submission">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="kit_id" id="form-kit-id" value="">
+                <div class="form-group">
+                    <label for="name">Your Name (optional):</label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email (optional):</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="hypothesis">Your Hypothesis:</label>
+                    <textarea id="hypothesis" name="hypothesis" rows="5" placeholder="Share your thoughts about what these results might mean..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Hypothesis</button>
+            </form>
+        </section>
+
+        <!-- Updates Notice -->
+        <section class="updates-notice">
+            <p class="update-text">
+                As new samples arrive in the lab, comparative data metrics are continually updated. Make sure to check back!
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p class="contact-text">
+            If you have questions, please reach out to us at
+            <a href="mailto:sinkmicrobiome@duke.edu">sinkmicrobiome@duke.edu</a>
+        </p>
+        <p class="last-updated">Last updated: <span id="last-updated">--</span></p>
+    </footer>
+
+    <script src="js/participant.js"></script>
+</body>
+</html>
