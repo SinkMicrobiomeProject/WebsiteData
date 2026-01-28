@@ -1,0 +1,104 @@
+{
+  "kit_id": "58",
+  "zipcode": "27701",
+  "county": "Durham",
+  "tailpiece": {
+    "sample_id": "58_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Comamonas",
+        "relative_abundance": 26.5
+      },
+      {
+        "rank": 2,
+        "genus": "Unclassified",
+        "relative_abundance": 12.37
+      },
+      {
+        "rank": 3,
+        "genus": "Janthinobacterium",
+        "relative_abundance": 9.72
+      },
+      {
+        "rank": 4,
+        "genus": "Enterobacter",
+        "relative_abundance": 8.35
+      },
+      {
+        "rank": 5,
+        "genus": "Unclassified",
+        "relative_abundance": 6.04
+      }
+    ],
+    "total_taxa": 202,
+    "alpha_diversity": {
+      "observed_richness": 155,
+      "shannon": 2.66,
+      "richness_percentile": 80
+    },
+    "beta_diversity": {
+      "similarity_same_county": 0.3915,
+      "similarity_other_counties": 0.3772,
+      "similarity_percentile": 30
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 45.23,
+        "percentile": 20
+      },
+      "moisture_lovers": {
+        "score": 80.26,
+        "percentile": 30
+      },
+      "disinfectant_survivalists": {
+        "score": 35.9,
+        "percentile": 30
+      },
+      "odor_producers": {
+        "score": 8.47,
+        "percentile": 30
+      },
+      "skin_commuters": {
+        "score": 8.67,
+        "percentile": 30
+      },
+      "oral_commuters": {
+        "score": 0.05,
+        "percentile": 40
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "58_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 30.75
+      },
+      {
+        "rank": 2,
+        "genus": "Diaphorobacter",
+        "relative_abundance": 15.88
+      },
+      {
+        "rank": 3,
+        "genus": "Janthinobacterium",
+        "relative_abundance": 8.36
+      },
+      {
+        "rank": 4,
+        "genus": "Comamonas",
+        "relative_abundance": 6.95
+      },
+      {
+        "rank": 5,
+        "genus": "Rossellomorea",
+        "relative_abundance": 6.11
+      }
+    ],
+    "total_taxa": 181
+  },
+  "py_similarity": 0.2867
+}

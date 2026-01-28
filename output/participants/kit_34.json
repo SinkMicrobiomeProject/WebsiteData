@@ -1,0 +1,103 @@
+{
+  "kit_id": "34",
+  "zipcode": "27278",
+  "county": "Orange",
+  "tailpiece": {
+    "sample_id": "34_1_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Comamonas",
+        "relative_abundance": 22.58
+      },
+      {
+        "rank": 2,
+        "genus": "Unclassified",
+        "relative_abundance": 19.74
+      },
+      {
+        "rank": 3,
+        "genus": "Diaphorobacter",
+        "relative_abundance": 14.81
+      },
+      {
+        "rank": 4,
+        "genus": "Pseudomonas",
+        "relative_abundance": 8.37
+      },
+      {
+        "rank": 5,
+        "genus": "Klebsiella",
+        "relative_abundance": 6.89
+      }
+    ],
+    "total_taxa": 161,
+    "alpha_diversity": {
+      "observed_richness": 131,
+      "shannon": 2.5,
+      "richness_percentile": 10
+    },
+    "beta_diversity": {
+      "similarity_same_county": 0.3842,
+      "similarity_other_counties": 0.4176,
+      "similarity_percentile": 50
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 56.29,
+        "percentile": 60
+      },
+      "moisture_lovers": {
+        "score": 75.61,
+        "percentile": 20
+      },
+      "disinfectant_survivalists": {
+        "score": 26.31,
+        "percentile": 10
+      },
+      "odor_producers": {
+        "score": 3.31,
+        "percentile": 20
+      },
+      "skin_commuters": {
+        "score": 3.5,
+        "percentile": 20
+      },
+      "oral_commuters": {
+        "score": 0.02,
+        "percentile": 10
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "34_1_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 63.54
+      },
+      {
+        "rank": 2,
+        "genus": "Acinetobacter",
+        "relative_abundance": 21.16
+      },
+      {
+        "rank": 3,
+        "genus": "Rossellomorea",
+        "relative_abundance": 8.01
+      },
+      {
+        "rank": 4,
+        "genus": "Unclassified",
+        "relative_abundance": 3.46
+      },
+      {
+        "rank": 5,
+        "genus": "Enterococcus",
+        "relative_abundance": 0.89
+      }
+    ],
+    "total_taxa": 137
+  }
+}

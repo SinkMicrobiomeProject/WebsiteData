@@ -1,0 +1,104 @@
+{
+  "kit_id": "12",
+  "zipcode": "27603",
+  "county": "Wake",
+  "tailpiece": {
+    "sample_id": "12_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Pantoea",
+        "relative_abundance": 20.14
+      },
+      {
+        "rank": 2,
+        "genus": "Pseudomonas",
+        "relative_abundance": 19.79
+      },
+      {
+        "rank": 3,
+        "genus": "Diaphorobacter",
+        "relative_abundance": 13.92
+      },
+      {
+        "rank": 4,
+        "genus": "Rossellomorea",
+        "relative_abundance": 8.11
+      },
+      {
+        "rank": 5,
+        "genus": "Chryseobacterium",
+        "relative_abundance": 7.46
+      }
+    ],
+    "total_taxa": 191,
+    "alpha_diversity": {
+      "observed_richness": 155,
+      "shannon": 2.58,
+      "richness_percentile": 80
+    },
+    "beta_diversity": {
+      "similarity_same_county": 0.3904,
+      "similarity_other_counties": 0.3384,
+      "similarity_percentile": 20
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 48.29,
+        "percentile": 40
+      },
+      "moisture_lovers": {
+        "score": 97.32,
+        "percentile": 100
+      },
+      "disinfectant_survivalists": {
+        "score": 51.99,
+        "percentile": 60
+      },
+      "odor_producers": {
+        "score": 10.37,
+        "percentile": 40
+      },
+      "skin_commuters": {
+        "score": 10.46,
+        "percentile": 40
+      },
+      "oral_commuters": {
+        "score": 0.3,
+        "percentile": 70
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "12_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Pantoea",
+        "relative_abundance": 18.82
+      },
+      {
+        "rank": 2,
+        "genus": "Comamonas",
+        "relative_abundance": 13.03
+      },
+      {
+        "rank": 3,
+        "genus": "Acinetobacter",
+        "relative_abundance": 11.8
+      },
+      {
+        "rank": 4,
+        "genus": "Acinetobacter",
+        "relative_abundance": 10.71
+      },
+      {
+        "rank": 5,
+        "genus": "Unclassified",
+        "relative_abundance": 8.9
+      }
+    ],
+    "total_taxa": 200
+  },
+  "py_similarity": 0.4937
+}

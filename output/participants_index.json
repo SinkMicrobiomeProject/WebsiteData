@@ -1,0 +1,47 @@
+[
+  {
+    "kit_id": "34",
+    "zipcode": "27278",
+    "county": "Orange"
+  },
+  {
+    "kit_id": "12",
+    "zipcode": "27603",
+    "county": "Wake"
+  },
+  {
+    "kit_id": "29",
+    "zipcode": "27278",
+    "county": "Orange"
+  },
+  {
+    "kit_id": "44",
+    "zipcode": "27701",
+    "county": "Durham"
+  },
+  {
+    "kit_id": "56",
+    "zipcode": "27701",
+    "county": "Durham"
+  },
+  {
+    "kit_id": "58",
+    "zipcode": "27701",
+    "county": "Durham"
+  },
+  {
+    "kit_id": "65",
+    "zipcode": "28401",
+    "county": "New Hanover"
+  },
+  {
+    "kit_id": "70",
+    "zipcode": "27603",
+    "county": "Wake"
+  },
+  {
+    "kit_id": "8",
+    "zipcode": "28301",
+    "county": "Cumberland"
+  }
+]

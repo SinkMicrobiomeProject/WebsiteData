@@ -1,0 +1,104 @@
+{
+  "kit_id": "65",
+  "zipcode": "28401",
+  "county": "New Hanover",
+  "tailpiece": {
+    "sample_id": "65_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 42.18
+      },
+      {
+        "rank": 2,
+        "genus": "Pseudomonas",
+        "relative_abundance": 14.2
+      },
+      {
+        "rank": 3,
+        "genus": "Acinetobacter",
+        "relative_abundance": 12.24
+      },
+      {
+        "rank": 4,
+        "genus": "Comamonas",
+        "relative_abundance": 5.92
+      },
+      {
+        "rank": 5,
+        "genus": "Klebsiella",
+        "relative_abundance": 4.82
+      }
+    ],
+    "total_taxa": 210,
+    "alpha_diversity": {
+      "observed_richness": 149,
+      "shannon": 2.16,
+      "richness_percentile": 50
+    },
+    "beta_diversity": {
+      "similarity_same_county": "NA",
+      "similarity_other_counties": 0.4228,
+      "similarity_percentile": 60
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 84.43,
+        "percentile": 100
+      },
+      "moisture_lovers": {
+        "score": 96.18,
+        "percentile": 90
+      },
+      "disinfectant_survivalists": {
+        "score": 78.58,
+        "percentile": 100
+      },
+      "odor_producers": {
+        "score": 55.17,
+        "percentile": 100
+      },
+      "skin_commuters": {
+        "score": 55.2,
+        "percentile": 100
+      },
+      "oral_commuters": {
+        "score": 0.44,
+        "percentile": 80
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "65_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Pantoea",
+        "relative_abundance": 21.38
+      },
+      {
+        "rank": 2,
+        "genus": "Acinetobacter",
+        "relative_abundance": 19.84
+      },
+      {
+        "rank": 3,
+        "genus": "Comamonas",
+        "relative_abundance": 14.17
+      },
+      {
+        "rank": 4,
+        "genus": "Pseudomonas",
+        "relative_abundance": 8.59
+      },
+      {
+        "rank": 5,
+        "genus": "Acinetobacter",
+        "relative_abundance": 8.16
+      }
+    ],
+    "total_taxa": 194
+  },
+  "py_similarity": 0.5151
+}

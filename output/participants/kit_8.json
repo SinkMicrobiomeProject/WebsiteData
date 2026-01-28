@@ -1,0 +1,104 @@
+{
+  "kit_id": "8",
+  "zipcode": "28301",
+  "county": "Cumberland",
+  "tailpiece": {
+    "sample_id": "8_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 24.05
+      },
+      {
+        "rank": 2,
+        "genus": "Pseudomonas",
+        "relative_abundance": 17.67
+      },
+      {
+        "rank": 3,
+        "genus": "Unclassified",
+        "relative_abundance": 12.49
+      },
+      {
+        "rank": 4,
+        "genus": "Comamonas",
+        "relative_abundance": 11.03
+      },
+      {
+        "rank": 5,
+        "genus": "Unclassified",
+        "relative_abundance": 4.6
+      }
+    ],
+    "total_taxa": 193,
+    "alpha_diversity": {
+      "observed_richness": 165,
+      "shannon": 2.59,
+      "richness_percentile": 90
+    },
+    "beta_diversity": {
+      "similarity_same_county": "NA",
+      "similarity_other_counties": 0.4242,
+      "similarity_percentile": 70
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 64.33,
+        "percentile": 70
+      },
+      "moisture_lovers": {
+        "score": 81.97,
+        "percentile": 40
+      },
+      "disinfectant_survivalists": {
+        "score": 56.82,
+        "percentile": 70
+      },
+      "odor_producers": {
+        "score": 26.27,
+        "percentile": 60
+      },
+      "skin_commuters": {
+        "score": 26.59,
+        "percentile": 60
+      },
+      "oral_commuters": {
+        "score": 0.11,
+        "percentile": 50
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "8_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 65.13
+      },
+      {
+        "rank": 2,
+        "genus": "Unclassified",
+        "relative_abundance": 7.71
+      },
+      {
+        "rank": 3,
+        "genus": "Pseudomonas",
+        "relative_abundance": 6.77
+      },
+      {
+        "rank": 4,
+        "genus": "Comamonas",
+        "relative_abundance": 4.53
+      },
+      {
+        "rank": 5,
+        "genus": "Unclassified",
+        "relative_abundance": 2.21
+      }
+    ],
+    "total_taxa": 187
+  },
+  "py_similarity": 0.2981
+}

@@ -1,0 +1,21 @@
+Sample ID	Kit ID	sample_location	Zipcode	County
+12_P	12	Tail piece	27603	Wake
+12_Y	12	Countertop	27603	Wake
+29_P	29	Tail piece	27278	Orange
+29_Y	29	Countertop	27278	Orange
+34_1_P	34	Tail piece	27278	Orange
+34_1_Y	34	Countertop	27278	Orange
+34_2_P	34	Tail piece	27278	Orange
+34_2_Y	34	Countertop	27278	Orange
+44_P	44	Tail piece	27701	Durham
+44_Y	44	Countertop	27701	Durham
+56_P	56	Tail piece	27701	Durham
+56_Y	56	Countertop	27701	Durham
+58_P	58	Tail piece	27701	Durham
+58_Y	58	Countertop	27701	Durham
+65_P	65	Tail piece	28401	New Hanover
+65_Y	65	Countertop	28401	New Hanover
+70_P	70	Tail piece	27603	Wake
+70_Y	70	Countertop	27603	Wake
+8_P	8	Tail piece	28301	Cumberland
+8_Y	8	Countertop	28301	Cumberland

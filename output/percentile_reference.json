@@ -1,0 +1,39 @@
+{
+  "alpha_diversity": {
+    "metric": "Observed Richness",
+    "description": "Number of unique bacterial types detected",
+    "interpretation": "Higher percentile = more diverse bacterial community"
+  },
+  "guilds": [
+    {
+      "guild_id": "Personal_care_degrader",
+      "guild_name": "Personal Care Product Degraders",
+      "description": "Bacteria that break down soaps, surfactants, and personal care products"
+    },
+    {
+      "guild_id": "Moisture_lover",
+      "guild_name": "Moisture Lovers",
+      "description": "Water-loving bacteria that thrive in moist sink environments"
+    },
+    {
+      "guild_id": "Disinfectant_survivalist",
+      "guild_name": "Disinfectant Survivalists",
+      "description": "Bacteria that can survive exposure to household disinfectants"
+    },
+    {
+      "guild_id": "Odor_producer",
+      "guild_name": "Odor Producers",
+      "description": "Bacteria that produce volatile compounds contributing to sink odors"
+    },
+    {
+      "guild_id": "Skin_commuter",
+      "guild_name": "Skin Commuters",
+      "description": "Bacteria typically found on human skin, transferred during hand washing"
+    },
+    {
+      "guild_id": "Oral_commuter",
+      "guild_name": "Oral Commuters",
+      "description": "Bacteria from the mouth, transferred during tooth brushing and spitting"
+    }
+  ]
+}

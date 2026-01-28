@@ -1,0 +1,62 @@
+[
+  {
+    "sample_id": "34_1_P",
+    "kit_id": "34",
+    "zipcode": "27278",
+    "county": "Orange"
+  },
+  {
+    "sample_id": "34_2_P",
+    "kit_id": "34",
+    "zipcode": "27278",
+    "county": "Orange"
+  },
+  {
+    "sample_id": "12_P",
+    "kit_id": "12",
+    "zipcode": "27603",
+    "county": "Wake"
+  },
+  {
+    "sample_id": "29_P",
+    "kit_id": "29",
+    "zipcode": "27278",
+    "county": "Orange"
+  },
+  {
+    "sample_id": "44_P",
+    "kit_id": "44",
+    "zipcode": "27701",
+    "county": "Durham"
+  },
+  {
+    "sample_id": "56_P",
+    "kit_id": "56",
+    "zipcode": "27701",
+    "county": "Durham"
+  },
+  {
+    "sample_id": "58_P",
+    "kit_id": "58",
+    "zipcode": "27701",
+    "county": "Durham"
+  },
+  {
+    "sample_id": "65_P",
+    "kit_id": "65",
+    "zipcode": "28401",
+    "county": "New Hanover"
+  },
+  {
+    "sample_id": "70_P",
+    "kit_id": "70",
+    "zipcode": "27603",
+    "county": "Wake"
+  },
+  {
+    "sample_id": "8_P",
+    "kit_id": "8",
+    "zipcode": "28301",
+    "county": "Cumberland"
+  }
+]

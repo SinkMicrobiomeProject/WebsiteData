@@ -1,0 +1,104 @@
+{
+  "kit_id": "70",
+  "zipcode": "27603",
+  "county": "Wake",
+  "tailpiece": {
+    "sample_id": "70_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 23.25
+      },
+      {
+        "rank": 2,
+        "genus": "Unclassified",
+        "relative_abundance": 21.84
+      },
+      {
+        "rank": 3,
+        "genus": "Pantoea",
+        "relative_abundance": 15.32
+      },
+      {
+        "rank": 4,
+        "genus": "Acinetobacter",
+        "relative_abundance": 6.52
+      },
+      {
+        "rank": 5,
+        "genus": "Diaphorobacter",
+        "relative_abundance": 5.95
+      }
+    ],
+    "total_taxa": 188,
+    "alpha_diversity": {
+      "observed_richness": 144,
+      "shannon": 2.46,
+      "richness_percentile": 30
+    },
+    "beta_diversity": {
+      "similarity_same_county": 0.3904,
+      "similarity_other_counties": 0.4593,
+      "similarity_percentile": 80
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 47.22,
+        "percentile": 30
+      },
+      "moisture_lovers": {
+        "score": 73.8,
+        "percentile": 10
+      },
+      "disinfectant_survivalists": {
+        "score": 39.97,
+        "percentile": 50
+      },
+      "odor_producers": {
+        "score": 30.02,
+        "percentile": 70
+      },
+      "skin_commuters": {
+        "score": 30.06,
+        "percentile": 70
+      },
+      "oral_commuters": {
+        "score": 0.45,
+        "percentile": 90
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "70_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Pseudomonas",
+        "relative_abundance": 31.81
+      },
+      {
+        "rank": 2,
+        "genus": "Acinetobacter",
+        "relative_abundance": 27.62
+      },
+      {
+        "rank": 3,
+        "genus": "Rossellomorea",
+        "relative_abundance": 14.92
+      },
+      {
+        "rank": 4,
+        "genus": "Chryseobacterium",
+        "relative_abundance": 4.28
+      },
+      {
+        "rank": 5,
+        "genus": "Sphingobacterium",
+        "relative_abundance": 1.92
+      }
+    ],
+    "total_taxa": 194
+  },
+  "py_similarity": 0.3356
+}

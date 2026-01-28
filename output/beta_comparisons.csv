@@ -1,0 +1,11 @@
+"Sample_ID","County","mean_sim_same_county","mean_sim_other_counties","mean_sim_all_others","sim_percentile"
+"34_1_P","Orange",0.3842,0.4176,0.4102,50
+"34_2_P","Orange",0.3504,0.3368,0.3398,10
+"12_P","Wake",0.3904,0.3384,0.3442,20
+"29_P","Orange",0.3737,0.5007,0.4725,100
+"44_P","Durham",0.4902,0.4576,0.4648,90
+"56_P","Durham",0.3969,0.3858,0.3883,40
+"58_P","Durham",0.3915,0.3772,0.3803,30
+"65_P","New Hanover",NA,0.4228,0.4228,60
+"70_P","Wake",0.3904,0.4593,0.4517,80
+"8_P","Cumberland",NA,0.4242,0.4242,70

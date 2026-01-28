@@ -1,0 +1,198 @@
+{
+  "last_updated": "2026-01-27 13:15:27",
+  "total_samples": 10,
+  "total_taxa": 142,
+  "taxa_by_county": {
+    "Orange": {
+      "county": "Orange",
+      "n_samples": 3,
+      "n_taxa": 139
+    },
+    "Wake": {
+      "county": "Wake",
+      "n_samples": 2,
+      "n_taxa": 133
+    },
+    "Durham": {
+      "county": "Durham",
+      "n_samples": 3,
+      "n_taxa": 139
+    },
+    "New Hanover": {
+      "county": "New Hanover",
+      "n_samples": 1,
+      "n_taxa": 125
+    },
+    "Cumberland": {
+      "county": "Cumberland",
+      "n_samples": 1,
+      "n_taxa": 109
+    }
+  },
+  "top5_taxa_overall": [
+    {
+      "rank": 1,
+      "genus": "Acinetobacter",
+      "mean_abundance": 15.97
+    },
+    {
+      "rank": 2,
+      "genus": "Unclassified",
+      "mean_abundance": 10.08
+    },
+    {
+      "rank": 3,
+      "genus": "Comamonas",
+      "mean_abundance": 9.18
+    },
+    {
+      "rank": 4,
+      "genus": "Pseudomonas",
+      "mean_abundance": 9.15
+    },
+    {
+      "rank": 5,
+      "genus": "Acinetobacter",
+      "mean_abundance": 7.75
+    }
+  ],
+  "top5_taxa_by_county": {
+    "Orange": [
+      {
+        "rank": 1,
+        "genus": "Unclassified",
+        "mean_abundance": 14.46
+      },
+      {
+        "rank": 2,
+        "genus": "Acinetobacter",
+        "mean_abundance": 13.44
+      },
+      {
+        "rank": 3,
+        "genus": "Pseudomonas",
+        "mean_abundance": 11.06
+      },
+      {
+        "rank": 4,
+        "genus": "Comamonas",
+        "mean_abundance": 11.04
+      },
+      {
+        "rank": 5,
+        "genus": "Diaphorobacter",
+        "mean_abundance": 6.22
+      }
+    ],
+    "Wake": [
+      {
+        "rank": 1,
+        "genus": "Pantoea",
+        "mean_abundance": 17.73
+      },
+      {
+        "rank": 2,
+        "genus": "Acinetobacter",
+        "mean_abundance": 11.63
+      },
+      {
+        "rank": 3,
+        "genus": "Unclassified",
+        "mean_abundance": 10.92
+      },
+      {
+        "rank": 4,
+        "genus": "Diaphorobacter",
+        "mean_abundance": 9.93
+      },
+      {
+        "rank": 5,
+        "genus": "Pseudomonas",
+        "mean_abundance": 9.9
+      }
+    ],
+    "Durham": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "mean_abundance": 17.97
+      },
+      {
+        "rank": 2,
+        "genus": "Comamonas",
+        "mean_abundance": 15
+      },
+      {
+        "rank": 3,
+        "genus": "Acinetobacter",
+        "mean_abundance": 8.41
+      },
+      {
+        "rank": 4,
+        "genus": "Unclassified",
+        "mean_abundance": 7
+      },
+      {
+        "rank": 5,
+        "genus": "Enterobacter",
+        "mean_abundance": 6.56
+      }
+    ],
+    "New Hanover": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "mean_abundance": 42.18
+      },
+      {
+        "rank": 2,
+        "genus": "Pseudomonas",
+        "mean_abundance": 14.2
+      },
+      {
+        "rank": 3,
+        "genus": "Acinetobacter",
+        "mean_abundance": 12.24
+      },
+      {
+        "rank": 4,
+        "genus": "Comamonas",
+        "mean_abundance": 5.92
+      },
+      {
+        "rank": 5,
+        "genus": "Klebsiella",
+        "mean_abundance": 4.82
+      }
+    ],
+    "Cumberland": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "mean_abundance": 24.05
+      },
+      {
+        "rank": 2,
+        "genus": "Pseudomonas",
+        "mean_abundance": 17.67
+      },
+      {
+        "rank": 3,
+        "genus": "Unclassified",
+        "mean_abundance": 12.49
+      },
+      {
+        "rank": 4,
+        "genus": "Comamonas",
+        "mean_abundance": 11.03
+      },
+      {
+        "rank": 5,
+        "genus": "Unclassified",
+        "mean_abundance": 4.6
+      }
+    ]
+  },
+  "counties": ["Orange", "Wake", "Durham", "New Hanover", "Cumberland"],
+  "zipcodes": [27278, 27603, 27701, 28401, 28301]
+}

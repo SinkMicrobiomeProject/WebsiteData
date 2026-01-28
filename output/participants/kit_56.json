@@ -1,0 +1,104 @@
+{
+  "kit_id": "56",
+  "zipcode": "27701",
+  "county": "Durham",
+  "tailpiece": {
+    "sample_id": "56_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 34.42
+      },
+      {
+        "rank": 2,
+        "genus": "Acinetobacter",
+        "relative_abundance": 19.1
+      },
+      {
+        "rank": 3,
+        "genus": "Enterobacter",
+        "relative_abundance": 7.23
+      },
+      {
+        "rank": 4,
+        "genus": "Rossellomorea",
+        "relative_abundance": 5.12
+      },
+      {
+        "rank": 5,
+        "genus": "Serratia",
+        "relative_abundance": 3.54
+      }
+    ],
+    "total_taxa": 182,
+    "alpha_diversity": {
+      "observed_richness": 144,
+      "shannon": 2.47,
+      "richness_percentile": 30
+    },
+    "beta_diversity": {
+      "similarity_same_county": 0.3969,
+      "similarity_other_counties": 0.3858,
+      "similarity_percentile": 40
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 65.51,
+        "percentile": 80
+      },
+      "moisture_lovers": {
+        "score": 91.77,
+        "percentile": 80
+      },
+      "disinfectant_survivalists": {
+        "score": 73.84,
+        "percentile": 90
+      },
+      "odor_producers": {
+        "score": 54.66,
+        "percentile": 90
+      },
+      "skin_commuters": {
+        "score": 54.73,
+        "percentile": 90
+      },
+      "oral_commuters": {
+        "score": 0.21,
+        "percentile": 60
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "56_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Diaphorobacter",
+        "relative_abundance": 27.64
+      },
+      {
+        "rank": 2,
+        "genus": "Acinetobacter",
+        "relative_abundance": 16.58
+      },
+      {
+        "rank": 3,
+        "genus": "Comamonas",
+        "relative_abundance": 8.56
+      },
+      {
+        "rank": 4,
+        "genus": "Pseudomonas",
+        "relative_abundance": 5.54
+      },
+      {
+        "rank": 5,
+        "genus": "Comamonas",
+        "relative_abundance": 5.25
+      }
+    ],
+    "total_taxa": 190
+  },
+  "py_similarity": 0.3991
+}

@@ -1,0 +1,103 @@
+name: Update Sink Microbiome Analysis
+
+on:
+  # Run on the 1st of every month at 6:00 AM UTC
+  schedule:
+    - cron: '0 6 1 * *'
+
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual run'
+        required: false
+        default: 'Manual update'
+
+  # Run when data files are updated
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/otu_table*.txt'
+      - 'data/metadata*.txt'
+      - 'data/functional_guilds_reference.csv'
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.0'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('**/DESCRIPTION') }}
+          restore-keys: |
+            ${{ runner.os }}-r-
+
+      - name: Install R packages
+        run: |
+          install.packages(c("vegan", "jsonlite", "dplyr", "tidyr", "tibble"),
+                          repos = "https://cloud.r-project.org")
+        shell: Rscript {0}
+
+      - name: Run analysis pipeline
+        run: |
+          source("scripts/run_pipeline_github.R")
+        shell: Rscript {0}
+        working-directory: ${{ github.workspace }}
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet output/ || echo "changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add output/
+          git commit -m "Update analysis results - $(date +'%Y-%m-%d')"
+          git push
+
+      - name: Upload analysis artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: analysis-results
+          path: output/
+          retention-days: 30
+
+      - name: Create summary
+        run: |
+          echo "## Analysis Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Output Files" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          ls -la output/*.json >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Participant Files" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          ls output/participants/ >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

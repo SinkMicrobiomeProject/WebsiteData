@@ -1,0 +1,104 @@
+{
+  "kit_id": "44",
+  "zipcode": "27701",
+  "county": "Durham",
+  "tailpiece": {
+    "sample_id": "44_P",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 19.5
+      },
+      {
+        "rank": 2,
+        "genus": "Comamonas",
+        "relative_abundance": 17.75
+      },
+      {
+        "rank": 3,
+        "genus": "Pantoea",
+        "relative_abundance": 11.34
+      },
+      {
+        "rank": 4,
+        "genus": "Unclassified",
+        "relative_abundance": 8.63
+      },
+      {
+        "rank": 5,
+        "genus": "Brevundimonas",
+        "relative_abundance": 5.41
+      }
+    ],
+    "total_taxa": 195,
+    "alpha_diversity": {
+      "observed_richness": 150,
+      "shannon": 2.77,
+      "richness_percentile": 60
+    },
+    "beta_diversity": {
+      "similarity_same_county": 0.4902,
+      "similarity_other_counties": 0.4576,
+      "similarity_percentile": 90
+    },
+    "guilds": {
+      "personal_care_degraders": {
+        "score": 53.27,
+        "percentile": 50
+      },
+      "moisture_lovers": {
+        "score": 85.1,
+        "percentile": 60
+      },
+      "disinfectant_survivalists": {
+        "score": 35.12,
+        "percentile": 20
+      },
+      "odor_producers": {
+        "score": 23.21,
+        "percentile": 50
+      },
+      "skin_commuters": {
+        "score": 23.21,
+        "percentile": 50
+      },
+      "oral_commuters": {
+        "score": 0.53,
+        "percentile": 100
+      }
+    }
+  },
+  "countertop": {
+    "sample_id": "44_Y",
+    "top5_taxa": [
+      {
+        "rank": 1,
+        "genus": "Acinetobacter",
+        "relative_abundance": 40.34
+      },
+      {
+        "rank": 2,
+        "genus": "Comamonas",
+        "relative_abundance": 18.53
+      },
+      {
+        "rank": 3,
+        "genus": "Diaphorobacter",
+        "relative_abundance": 8.93
+      },
+      {
+        "rank": 4,
+        "genus": "Acinetobacter",
+        "relative_abundance": 5.17
+      },
+      {
+        "rank": 5,
+        "genus": "Pseudomonas",
+        "relative_abundance": 4.75
+      }
+    ],
+    "total_taxa": 185
+  },
+  "py_similarity": 0.5738
+}
