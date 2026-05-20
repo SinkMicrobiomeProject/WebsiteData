@@ -31,6 +31,30 @@ body {
     background-color: var(--background);
 }
 
+/* Top Nav */
+.top-nav {
+    background-color: #1a3a5c;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+}
+
+.top-nav a {
+    color: #cfe2f3;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.top-nav a:hover {
+    color: #ffffff;
+}
+
 /* Header */
 .main-header {
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
