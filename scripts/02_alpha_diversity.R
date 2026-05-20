@@ -77,9 +77,9 @@ if (nrow(tailpiece_alpha) > 0) {
 }
 
 # -----------------------------------------------------------------------------
-# Summary Statistics by County
+# Summary Statistics by State
 # -----------------------------------------------------------------------------
-cat("Calculating summary statistics by county...\n")
+cat("Calculating summary statistics by state...\n")
 
 # Overall stats
 overall_stats <- data.frame(
@@ -93,11 +93,11 @@ overall_stats <- data.frame(
   stringsAsFactors = FALSE
 )
 
-# Stats by county
-county_stats <- tailpiece_alpha %>%
-  group_by(County) %>%
+# Stats by state
+state_stats <- tailpiece_alpha %>%
+  group_by(State) %>%
   summarize(
-    group = first(County),
+    group = first(State),
     n_samples = n(),
     mean_richness = mean(observed_richness, na.rm = TRUE),
     sd_richness = sd(observed_richness, na.rm = TRUE),
@@ -106,9 +106,9 @@ county_stats <- tailpiece_alpha %>%
     mean_shannon = mean(shannon, na.rm = TRUE),
     .groups = "drop"
   ) %>%
-  select(-County)
+  select(-State)
 
-alpha_summary <- rbind(overall_stats, as.data.frame(county_stats))
+alpha_summary <- rbind(overall_stats, as.data.frame(state_stats))
 
 cat("  - Summary statistics:\n")
 print(alpha_summary)

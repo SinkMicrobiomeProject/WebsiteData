@@ -88,7 +88,7 @@ for (g in guild_cols) {
 }
 
 # Merge with metadata
-guild_scores <- merge(guild_scores, metadata[, c("Sample_ID", "Kit.ID", "sample_location", "County", "Zipcode")],
+guild_scores <- merge(guild_scores, metadata[, c("Sample_ID", "Kit.ID", "sample_location", "State")],
                       by = "Sample_ID")
 
 cat("  - Guild scores calculated for", nrow(guild_scores), "samples\n")
@@ -128,17 +128,17 @@ rownames(guild_summary) <- NULL
 cat("  - Guild abundance summary (% relative abundance):\n")
 print(guild_summary)
 
-# County-level guild summary
-county_guild_summary <- tp_guilds %>%
-  group_by(County) %>%
+# State-level guild summary
+state_guild_summary <- tp_guilds %>%
+  group_by(State) %>%
   summarize(
     n_samples = n(),
     across(all_of(guild_cols), ~ round(mean(.x, na.rm = TRUE), 2), .names = "mean_{.col}"),
     .groups = "drop"
   )
 
-cat("\n  - County-level guild summary:\n")
-print(as.data.frame(county_guild_summary))
+cat("\n  - State-level guild summary:\n")
+print(as.data.frame(state_guild_summary))
 
 # -----------------------------------------------------------------------------
 # Create User-Friendly Guild Names
@@ -173,7 +173,7 @@ guild_results <- list(
   guild_scores = guild_scores,
   tp_guilds = tp_guilds,
   guild_summary = guild_summary,
-  county_guild_summary = county_guild_summary,
+  state_guild_summary = state_guild_summary,
   taxonomy_guilds = taxonomy_guilds,
   guild_names_friendly = guild_names_friendly
 )
