@@ -80,6 +80,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add output/
           git commit -m "Update analysis results - $(date +'%Y-%m-%d')"
+          git pull --rebase origin main
           git push
 
       - name: Upload analysis artifacts
