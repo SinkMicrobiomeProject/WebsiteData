@@ -1,5 +1,6 @@
 {
   "kit_id": "70",
+  "state": "Georgia",
   "tailpiece": {
     "sample_id": "70_P",
     "top5_taxa": [
@@ -36,9 +37,9 @@
       "richness_percentile": 30
     },
     "beta_diversity": {
-      "similarity_percentile": 80,
-      "similarity_same_state": 0.3904,
-      "similarity_other_states": 0.4593
+      "similarity_same_state": "NA",
+      "similarity_other_states": 0.4517,
+      "similarity_percentile": 80
     },
     "guilds": {
       "personal_care_degraders": {
@@ -98,6 +99,5 @@
     ],
     "total_taxa": 194
   },
-  "py_similarity": 0.3356,
-  "state": "Georgia"
+  "py_similarity": 0.3356
 }

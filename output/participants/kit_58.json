@@ -1,5 +1,6 @@
 {
   "kit_id": "58",
+  "state": "California",
   "tailpiece": {
     "sample_id": "58_P",
     "top5_taxa": [
@@ -36,9 +37,9 @@
       "richness_percentile": 80
     },
     "beta_diversity": {
-      "similarity_percentile": 30,
       "similarity_same_state": 0.3915,
-      "similarity_other_states": 0.3772
+      "similarity_other_states": 0.3772,
+      "similarity_percentile": 30
     },
     "guilds": {
       "personal_care_degraders": {
@@ -98,6 +99,5 @@
     ],
     "total_taxa": 181
   },
-  "py_similarity": 0.2867,
-  "state": "California"
+  "py_similarity": 0.2867
 }

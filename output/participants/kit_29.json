@@ -1,5 +1,6 @@
 {
   "kit_id": "29",
+  "state": "North Carolina",
   "tailpiece": {
     "sample_id": "29_P",
     "top5_taxa": [
@@ -36,9 +37,9 @@
       "richness_percentile": 40
     },
     "beta_diversity": {
-      "similarity_percentile": 100,
-      "similarity_same_state": 0.3737,
-      "similarity_other_states": 0.5007
+      "similarity_same_state": 0.3801,
+      "similarity_other_states": 0.5187,
+      "similarity_percentile": 100
     },
     "guilds": {
       "personal_care_degraders": {
@@ -98,6 +99,5 @@
     ],
     "total_taxa": 197
   },
-  "py_similarity": 0.5882,
-  "state": "North Carolina"
+  "py_similarity": 0.5882
 }

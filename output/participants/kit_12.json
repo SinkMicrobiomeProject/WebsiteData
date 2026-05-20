@@ -1,5 +1,6 @@
 {
   "kit_id": "12",
+  "state": "Michigan",
   "tailpiece": {
     "sample_id": "12_P",
     "top5_taxa": [
@@ -36,9 +37,9 @@
       "richness_percentile": 80
     },
     "beta_diversity": {
-      "similarity_percentile": 20,
-      "similarity_same_state": 0.3904,
-      "similarity_other_states": 0.3384
+      "similarity_same_state": 0.3638,
+      "similarity_other_states": 0.3417,
+      "similarity_percentile": 20
     },
     "guilds": {
       "personal_care_degraders": {
@@ -98,6 +99,5 @@
     ],
     "total_taxa": 200
   },
-  "py_similarity": 0.4937,
-  "state": "Michigan"
+  "py_similarity": 0.4937
 }

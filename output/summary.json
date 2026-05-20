@@ -1,17 +1,17 @@
 {
-  "last_updated": "2026-05-01 08:22:29",
+  "last_updated": "2026-05-20 19:14:15",
   "total_samples": 10,
   "total_taxa": 142,
   "taxa_by_state": {
     "North Carolina": {
       "state": "North Carolina",
       "n_samples": 4,
-      "n_taxa": 142
+      "n_taxa": 141
     },
     "Michigan": {
       "state": "Michigan",
       "n_samples": 2,
-      "n_taxa": 130
+      "n_taxa": 139
     },
     "California": {
       "state": "California",
@@ -21,7 +21,7 @@
     "Georgia": {
       "state": "Georgia",
       "n_samples": 1,
-      "n_taxa": 120
+      "n_taxa": 111
     }
   },
   "top5_taxa_overall": [
@@ -56,54 +56,54 @@
       {
         "rank": 1,
         "genus": "Unclassified",
-        "mean_abundance": 14.46
+        "mean_abundance": 13.97
       },
       {
         "rank": 2,
-        "genus": "Acinetobacter",
-        "mean_abundance": 13.44
+        "genus": "Pseudomonas",
+        "mean_abundance": 12.72
       },
       {
         "rank": 3,
-        "genus": "Pseudomonas",
-        "mean_abundance": 11.06
-      },
-      {
-        "rank": 4,
         "genus": "Comamonas",
         "mean_abundance": 11.04
       },
       {
+        "rank": 4,
+        "genus": "Acinetobacter",
+        "mean_abundance": 10.08
+      },
+      {
         "rank": 5,
-        "genus": "Diaphorobacter",
-        "mean_abundance": 6.22
+        "genus": "Acinetobacter",
+        "mean_abundance": 6.55
       }
     ],
     "Michigan": [
       {
         "rank": 1,
-        "genus": "Pantoea",
-        "mean_abundance": 17.73
+        "genus": "Acinetobacter",
+        "mean_abundance": 21.09
       },
       {
         "rank": 2,
-        "genus": "Acinetobacter",
-        "mean_abundance": 11.63
+        "genus": "Pseudomonas",
+        "mean_abundance": 17
       },
       {
         "rank": 3,
-        "genus": "Unclassified",
-        "mean_abundance": 10.92
+        "genus": "Pantoea",
+        "mean_abundance": 10.07
       },
       {
         "rank": 4,
-        "genus": "Diaphorobacter",
-        "mean_abundance": 9.93
+        "genus": "Acinetobacter",
+        "mean_abundance": 9.78
       },
       {
         "rank": 5,
-        "genus": "Pseudomonas",
-        "mean_abundance": 9.9
+        "genus": "Diaphorobacter",
+        "mean_abundance": 8.96
       }
     ],
     "California": [
@@ -115,7 +115,7 @@
       {
         "rank": 2,
         "genus": "Comamonas",
-        "mean_abundance": 15.0
+        "mean_abundance": 15
       },
       {
         "rank": 3,
@@ -125,7 +125,7 @@
       {
         "rank": 4,
         "genus": "Unclassified",
-        "mean_abundance": 7.0
+        "mean_abundance": 7
       },
       {
         "rank": 5,
@@ -137,34 +137,29 @@
       {
         "rank": 1,
         "genus": "Acinetobacter",
-        "mean_abundance": 24.05
+        "mean_abundance": 23.25
       },
       {
         "rank": 2,
-        "genus": "Pseudomonas",
-        "mean_abundance": 17.67
+        "genus": "Unclassified",
+        "mean_abundance": 21.84
       },
       {
         "rank": 3,
-        "genus": "Unclassified",
-        "mean_abundance": 12.49
+        "genus": "Pantoea",
+        "mean_abundance": 15.32
       },
       {
         "rank": 4,
-        "genus": "Comamonas",
-        "mean_abundance": 11.03
+        "genus": "Acinetobacter",
+        "mean_abundance": 6.52
       },
       {
         "rank": 5,
-        "genus": "Unclassified",
-        "mean_abundance": 4.6
+        "genus": "Diaphorobacter",
+        "mean_abundance": 5.95
       }
     ]
   },
-  "states": [
-    "North Carolina",
-    "Michigan",
-    "California",
-    "Georgia"
-  ]
+  "states": ["North Carolina", "Michigan", "California", "Georgia"]
 }
