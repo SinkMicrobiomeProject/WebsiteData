@@ -1,7 +1,5 @@
 {
   "kit_id": "12",
-  "zipcode": "27603",
-  "county": "Wake",
   "tailpiece": {
     "sample_id": "12_P",
     "top5_taxa": [
@@ -38,9 +36,9 @@
       "richness_percentile": 80
     },
     "beta_diversity": {
-      "similarity_same_county": 0.3904,
-      "similarity_other_counties": 0.3384,
-      "similarity_percentile": 20
+      "similarity_percentile": 20,
+      "similarity_same_state": 0.3904,
+      "similarity_other_states": 0.3384
     },
     "guilds": {
       "personal_care_degraders": {
@@ -100,5 +98,6 @@
     ],
     "total_taxa": 200
   },
-  "py_similarity": 0.4937
+  "py_similarity": 0.4937,
+  "state": "Michigan"
 }

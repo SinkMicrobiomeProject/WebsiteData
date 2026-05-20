@@ -91,34 +91,34 @@ tp_similarity <- similarity_matrix[tailpiece_samples, tailpiece_samples]
 # Create results dataframe
 beta_comparisons <- data.frame(
   Sample_ID = character(),
-  County = character(),
-  mean_sim_same_county = numeric(),
-  mean_sim_other_counties = numeric(),
+  State = character(),
+  mean_sim_same_state = numeric(),
+  mean_sim_other_states = numeric(),
   mean_sim_all_others = numeric(),
   stringsAsFactors = FALSE
 )
 
 for (sample in tailpiece_samples) {
-  sample_county <- metadata$County[metadata$Sample_ID == sample]
+  sample_state <- metadata$State[metadata$Sample_ID == sample]
 
-  # Other samples in same county
-  same_county_samples <- metadata$Sample_ID[metadata$Sample_ID %in% tailpiece_samples &
-                                              metadata$County == sample_county &
+  # Other samples in same state
+  same_state_samples <- metadata$Sample_ID[metadata$Sample_ID %in% tailpiece_samples &
+                                              metadata$State == sample_state &
                                               metadata$Sample_ID != sample]
 
-  # Samples in other counties
-  other_county_samples <- metadata$Sample_ID[metadata$Sample_ID %in% tailpiece_samples &
-                                               metadata$County != sample_county]
+  # Samples in other states
+  other_state_samples <- metadata$Sample_ID[metadata$Sample_ID %in% tailpiece_samples &
+                                               metadata$State != sample_state]
 
   # All other samples
   all_other_samples <- tailpiece_samples[tailpiece_samples != sample]
 
   # Calculate mean similarities
-  mean_same <- ifelse(length(same_county_samples) > 0,
-                      mean(tp_similarity[sample, same_county_samples], na.rm = TRUE),
+  mean_same <- ifelse(length(same_state_samples) > 0,
+                      mean(tp_similarity[sample, same_state_samples], na.rm = TRUE),
                       NA)
-  mean_other <- ifelse(length(other_county_samples) > 0,
-                       mean(tp_similarity[sample, other_county_samples], na.rm = TRUE),
+  mean_other <- ifelse(length(other_state_samples) > 0,
+                       mean(tp_similarity[sample, other_state_samples], na.rm = TRUE),
                        NA)
   mean_all <- ifelse(length(all_other_samples) > 0,
                      mean(tp_similarity[sample, all_other_samples], na.rm = TRUE),
@@ -126,9 +126,9 @@ for (sample in tailpiece_samples) {
 
   beta_comparisons <- rbind(beta_comparisons, data.frame(
     Sample_ID = sample,
-    County = sample_county,
-    mean_sim_same_county = round(mean_same, 4),
-    mean_sim_other_counties = round(mean_other, 4),
+    State = sample_state,
+    mean_sim_same_state = round(mean_same, 4),
+    mean_sim_other_states = round(mean_other, 4),
     mean_sim_all_others = round(mean_all, 4),
     stringsAsFactors = FALSE
   ))
@@ -147,21 +147,21 @@ if (nrow(beta_comparisons) > 1) {
 }
 
 # -----------------------------------------------------------------------------
-# County-Level Summary
+# State-Level Summary
 # -----------------------------------------------------------------------------
-cat("Calculating county-level summaries...\n")
+cat("Calculating state-level summaries...\n")
 
-county_beta_summary <- beta_comparisons %>%
-  group_by(County) %>%
+state_beta_summary <- beta_comparisons %>%
+  group_by(State) %>%
   summarize(
     n_samples = n(),
-    mean_within_county_sim = mean(mean_sim_same_county, na.rm = TRUE),
-    mean_between_county_sim = mean(mean_sim_other_counties, na.rm = TRUE),
+    mean_within_state_sim = mean(mean_sim_same_state, na.rm = TRUE),
+    mean_between_state_sim = mean(mean_sim_other_states, na.rm = TRUE),
     .groups = "drop"
   )
 
-cat("  - County beta diversity summary:\n")
-print(as.data.frame(county_beta_summary))
+cat("  - State beta diversity summary:\n")
+print(as.data.frame(state_beta_summary))
 
 # -----------------------------------------------------------------------------
 # Save Beta Diversity Results
@@ -173,7 +173,7 @@ beta_results <- list(
   similarity_matrix = similarity_matrix,
   within_kit_similarity = within_kit_similarity,
   beta_comparisons = beta_comparisons,
-  county_beta_summary = county_beta_summary
+  state_beta_summary = state_beta_summary
 )
 
 saveRDS(beta_results, file.path(OUTPUT_DIR, "beta_diversity_results.rds"))

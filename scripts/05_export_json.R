@@ -57,20 +57,20 @@ cat("Creating summary statistics JSON...\n")
 all_genera <- unique(taxonomy$Genus[taxonomy$Genus != "" & taxonomy$Genus != "__"])
 total_taxa <- length(all_genera)
 
-# Taxa count by county (based on tail piece samples)
-taxa_by_county <- list()
-for (county in unique(metadata$County)) {
-  county_samples <- metadata$Sample_ID[metadata$County == county &
+# Taxa count by state (based on tail piece samples)
+taxa_by_state <- list()
+for (state in unique(metadata$State)) {
+  state_samples <- metadata$Sample_ID[metadata$State == state &
                                          metadata$Sample_ID %in% tailpiece_samples]
-  if (length(county_samples) > 0) {
-    county_otus <- rownames(otu_relabund_percent)[rowSums(otu_relabund_percent[, county_samples, drop = FALSE]) > 0]
-    county_genera <- unique(taxonomy$Genus[taxonomy$OTU_ID %in% county_otus &
+  if (length(state_samples) > 0) {
+    state_otus <- rownames(otu_relabund_percent)[rowSums(otu_relabund_percent[, state_samples, drop = FALSE]) > 0]
+    state_genera <- unique(taxonomy$Genus[taxonomy$OTU_ID %in% state_otus &
                                              taxonomy$Genus != "" &
                                              taxonomy$Genus != "__"])
-    taxa_by_county[[county]] <- list(
-      county = county,
-      n_samples = length(county_samples),
-      n_taxa = length(county_genera)
+    taxa_by_state[[state]] <- list(
+      state = state,
+      n_samples = length(state_samples),
+      n_taxa = length(state_genera)
     )
   }
 }
@@ -88,20 +88,20 @@ top5_overall <- lapply(1:5, function(i) {
   )
 })
 
-# Top 5 taxa by county
-top5_by_county <- list()
-for (county in unique(metadata$County)) {
-  county_samples <- metadata$Sample_ID[metadata$County == county &
+# Top 5 taxa by state
+top5_by_state <- list()
+for (state in unique(metadata$State)) {
+  state_samples <- metadata$Sample_ID[metadata$State == state &
                                          metadata$Sample_ID %in% tailpiece_samples]
-  if (length(county_samples) > 0) {
-    county_means <- rowMeans(otu_relabund_percent[, county_samples, drop = FALSE])
-    county_top5_idx <- order(county_means, decreasing = TRUE)[1:5]
+  if (length(state_samples) > 0) {
+    state_means <- rowMeans(otu_relabund_percent[, state_samples, drop = FALSE])
+    state_top5_idx <- order(state_means, decreasing = TRUE)[1:5]
 
-    top5_by_county[[county]] <- lapply(1:5, function(i) {
+    top5_by_state[[state]] <- lapply(1:5, function(i) {
       list(
         rank = i,
-        genus = format_genus(taxonomy$Genus[county_top5_idx[i]]),
-        mean_abundance = round(county_means[county_top5_idx[i]], 2)
+        genus = format_genus(taxonomy$Genus[state_top5_idx[i]]),
+        mean_abundance = round(state_means[state_top5_idx[i]], 2)
       )
     })
   }
@@ -112,11 +112,10 @@ summary_data <- list(
   last_updated = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
   total_samples = length(tailpiece_samples),
   total_taxa = total_taxa,
-  taxa_by_county = taxa_by_county,
+  taxa_by_state = taxa_by_state,
   top5_taxa_overall = top5_overall,
-  top5_taxa_by_county = top5_by_county,
-  counties = unique(metadata$County),
-  zipcodes = unique(metadata$Zipcode)
+  top5_taxa_by_state = top5_by_state,
+  states = unique(metadata$State)
 )
 
 write(toJSON(summary_data, auto_unbox = TRUE, pretty = TRUE),
@@ -136,8 +135,7 @@ map_data <- lapply(tailpiece_samples, function(s) {
   list(
     sample_id = s,
     kit_id = as.character(sample_meta$Kit.ID),
-    zipcode = as.character(sample_meta$Zipcode),
-    county = sample_meta$County
+    state = sample_meta$State
   )
 })
 
@@ -165,8 +163,7 @@ for (kit in kit_ids) {
   # Initialize participant data
   participant <- list(
     kit_id = as.character(kit),
-    zipcode = as.character(kit_meta$Zipcode[1]),
-    county = kit_meta$County[1]
+    state = kit_meta$State[1]
   )
 
   # Tail piece results
@@ -199,8 +196,8 @@ for (kit in kit_ids) {
     if (p_sample %in% beta_results$beta_comparisons$Sample_ID) {
       beta_row <- beta_results$beta_comparisons[beta_results$beta_comparisons$Sample_ID == p_sample, ]
       participant$tailpiece$beta_diversity <- list(
-        similarity_same_county = beta_row$mean_sim_same_county,
-        similarity_other_counties = beta_row$mean_sim_other_counties,
+        similarity_same_state = beta_row$mean_sim_same_state,
+        similarity_other_states = beta_row$mean_sim_other_states,
         similarity_percentile = round(beta_row$sim_percentile, 1)
       )
     }
@@ -297,8 +294,7 @@ participants_index <- lapply(kit_ids, function(kit) {
   kit_meta <- metadata[metadata$Kit.ID == kit, ][1, ]
   list(
     kit_id = as.character(kit),
-    zipcode = as.character(kit_meta$Zipcode),
-    county = kit_meta$County
+    state = kit_meta$State
   )
 })
 

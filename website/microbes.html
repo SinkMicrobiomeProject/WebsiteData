@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microbial Community – Sink Microbiome Project</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <style>
+    .microbes-hero {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+    .microbes-hero h1 { margin-bottom: 8px; }
+    .microbes-hero p  { max-width: 620px; margin: 0 auto; opacity: 0.75; font-size: 1em; }
+
+    .figure-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* ── Donut panel ── */
+    .panel {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      padding: 28px 24px;
+    }
+    .panel h2 {
+      font-size: 1em;
+      font-weight: 700;
+      margin: 0 0 18px;
+      text-align: center;
+      letter-spacing: .02em;
+    }
+    .donut-panel { flex: 0 0 300px; }
+    .donut-wrap  { position: relative; width: 200px; height: 200px; margin: 0 auto 20px; }
+    .donut-wrap svg { width: 100%; height: 100%; overflow: visible; }
+    .donut-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center; pointer-events: none;
+    }
+    .donut-center .big   { font-size: 1.6em; font-weight: 700; line-height: 1; }
+    .donut-center .small { font-size: 0.7em; opacity: .6; }
+
+    .legend { list-style: none; margin: 0; padding: 0; }
+    .legend li {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85em; padding: 4px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .legend li:last-child { border-bottom: none; }
+    .legend-dot {
+      width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+    }
+    .legend-name  { flex: 1; font-style: italic; }
+    .legend-pct   { font-weight: 600; white-space: nowrap; }
+    .legend-note  { font-size: 0.75em; opacity: .5; }
+
+    /* ── Bar chart panel ── */
+    .bar-panel { flex: 1 1 400px; min-width: 280px; }
+    .bar-row {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px; font-size: 0.82em;
+    }
+    .bar-label {
+      width: 140px; flex-shrink: 0;
+      text-align: right; font-style: italic;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .bar-track {
+      flex: 1; background: #f0f2f5; border-radius: 4px; height: 20px;
+      position: relative; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 4px;
+      transition: width .6s ease;
+    }
+    .bar-pct {
+      position: absolute; right: 6px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.78em; font-weight: 600; color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,.3);
+    }
+    .bar-pct.outside {
+      position: static; transform: none;
+      color: #555; text-shadow: none; flex-shrink: 0; width: 36px;
+      font-size: 0.78em; font-weight: 600;
+    }
+
+    .phylum-tag {
+      display: inline-block; font-size: 0.68em; font-style: normal;
+      border-radius: 3px; padding: 1px 5px; color: #fff; margin-left: 4px;
+      vertical-align: middle; white-space: nowrap;
+    }
+
+    .note {
+      text-align: center; font-size: 0.75em; opacity: .5;
+      margin: 0 auto 40px; max-width: 700px; padding: 0 20px;
+    }
+
+    .back-link {
+      text-align: center; margin: 0 0 12px;
+    }
+    .back-link a { font-size: 0.9em; color: #2c5f8a; text-decoration: none; }
+    .back-link a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .bar-label { width: 100px; font-size: 0.75em; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-content">
+    <a href="index.html">
+      <img src="assets/logo.png" alt="Sink Microbiome Project Logo" class="logo">
+    </a>
+    <h1>Sink Microbiome Project</h1>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="back-link"><a href="index.html">← Back to Project Overview</a></div>
+
+  <div class="microbes-hero">
+    <h1>The Microbial Community of Bathroom Sinks</h1>
+    <p>
+      Every household sink harbors hundreds of bacterial species. Here's a snapshot
+      of what we've found across <span id="hero-samples">—</span> samples from
+      <span id="hero-states">—</span> states.
+    </p>
+  </div>
+
+  <div class="figure-grid">
+
+    <!-- Donut chart: Phyla -->
+    <div class="panel donut-panel">
+      <h2>Bacteria by Major Group (Phylum)</h2>
+      <div class="donut-wrap">
+        <svg id="donut-svg" viewBox="0 0 200 200"></svg>
+        <div class="donut-center">
+          <div class="big" id="donut-total">—</div>
+          <div class="small">total genera</div>
+        </div>
+      </div>
+      <ul class="legend" id="phylum-legend"></ul>
+    </div>
+
+    <!-- Bar chart: Top genera -->
+    <div class="panel bar-panel">
+      <h2>Top 15 Most Abundant Genera</h2>
+      <div id="bar-chart"></div>
+    </div>
+
+  </div>
+
+  <p class="note" id="note-text"></p>
+
+</main>
+
+<script>
+// ── Data (computed from OTU table) ──────────────────────────────────────────
+
+var PHYLA = [
+  { name: "Proteobacteria",  gtdb: "Pseudomonadota",  pct: 91.7, color: "#2c6ea6" },
+  { name: "Firmicutes",      gtdb: "Bacillota",        pct: 3.9,  color: "#27ae60" },
+  { name: "Bacteroidetes",   gtdb: "Bacteroidota",     pct: 2.4,  color: "#e67e22" },
+  { name: "Unclassified",    gtdb: "Unclassified",     pct: 1.4,  color: "#95a5a6" },
+  { name: "Actinobacteria",  gtdb: "Actinomycetota",   pct: 0.4,  color: "#8e44ad" },
+  { name: "Rare (<0.1%)",    gtdb: "",                 pct: 0.2,  color: "#bdc3c7" }
+];
+
+var GENERA = [
+  { genus: "Acinetobacter",      phylum: "Pseudomonadota", pct: 34.2 },
+  { genus: "Comamonas",          phylum: "Pseudomonadota", pct: 12.2 },
+  { genus: "Pseudomonas",        phylum: "Pseudomonadota", pct: 8.7  },
+  { genus: "Pantoea",            phylum: "Pseudomonadota", pct: 7.9  },
+  { genus: "Diaphorobacter",     phylum: "Pseudomonadota", pct: 5.5  },
+  { genus: "Rossellomorea",      phylum: "Bacillota",      pct: 3.1  },
+  { genus: "Klebsiella",         phylum: "Pseudomonadota", pct: 2.3  },
+  { genus: "Enterobacter",       phylum: "Pseudomonadota", pct: 2.0  },
+  { genus: "Brevundimonas",      phylum: "Pseudomonadota", pct: 1.8  },
+  { genus: "Janthinobacterium",  phylum: "Pseudomonadota", pct: 1.6  },
+  { genus: "Chryseobacterium",   phylum: "Bacteroidota",   pct: 1.2  },
+  { genus: "Serratia",           phylum: "Pseudomonadota", pct: 0.9  },
+  { genus: "Herbaspirillum",     phylum: "Pseudomonadota", pct: 0.8  },
+  { genus: "Sphingobacterium",   phylum: "Bacteroidota",   pct: 0.7  },
+  { genus: "Achromobacter",      phylum: "Pseudomonadota", pct: 0.5  }
+];
+
+var PHYLUM_COLOR = {};
+PHYLA.forEach(function(p){ PHYLUM_COLOR[p.gtdb] = p.color; });
+PHYLUM_COLOR["Pseudomonadota"] = "#2c6ea6";
+
+// ── Fetch live summary for hero numbers ──────────────────────────────────────
+fetch("../output/summary.json")
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById("hero-samples").textContent = d.total_samples;
+    document.getElementById("hero-states").textContent  = d.states.length;
+    document.getElementById("note-text").textContent =
+      "Data last updated: " + d.last_updated +
+      ". Relative abundances shown are means across all samples after rarefaction.";
+  }).catch(function(){});
+
+// ── Donut chart (SVG) ────────────────────────────────────────────────────────
+(function(){
+  var svg   = document.getElementById("donut-svg");
+  var cx = 100, cy = 100, r = 80, inner = 52;
+  var total = PHYLA.reduce(function(s,p){ return s+p.pct; }, 0);
+  var angle = -Math.PI/2;
+
+  PHYLA.forEach(function(p){
+    var sweep = (p.pct / total) * 2 * Math.PI;
+    var x1 = cx + r * Math.cos(angle);
+    var y1 = cy + r * Math.sin(angle);
+    var x2 = cx + r * Math.cos(angle + sweep);
+    var y2 = cy + r * Math.sin(angle + sweep);
+    var xi1 = cx + inner * Math.cos(angle);
+    var yi1 = cy + inner * Math.sin(angle);
+    var xi2 = cx + inner * Math.cos(angle + sweep);
+    var yi2 = cy + inner * Math.sin(angle + sweep);
+    var large = sweep > Math.PI ? 1 : 0;
+
+    var path = document.createElementNS("http://www.w3.org/2000/svg","path");
+    path.setAttribute("d",
+      "M " + x1  + " " + y1  +
+      " A " + r     + " " + r     + " 0 " + large + " 1 " + x2  + " " + y2  +
+      " L " + xi2 + " " + yi2 +
+      " A " + inner + " " + inner + " 0 " + large + " 0 " + xi1 + " " + yi1 +
+      " Z"
+    );
+    path.setAttribute("fill",  p.color);
+    path.setAttribute("stroke","#fff");
+    path.setAttribute("stroke-width","2");
+    path.style.cursor = "pointer";
+    path.setAttribute("title", p.name + ": " + p.pct + "%");
+
+    // hover highlight
+    path.addEventListener("mouseover", function(){
+      this.setAttribute("opacity","0.82");
+    });
+    path.addEventListener("mouseout", function(){
+      this.setAttribute("opacity","1");
+    });
+
+    svg.appendChild(path);
+    angle += sweep;
+  });
+
+  // count unique genera for center label
+  var uniqueGenera = new Set(GENERA.map(function(g){ return g.genus; }));
+  document.getElementById("donut-total").textContent = "142";
+})();
+
+// ── Phylum legend ────────────────────────────────────────────────────────────
+(function(){
+  var ul = document.getElementById("phylum-legend");
+  PHYLA.forEach(function(p){
+    var li   = document.createElement("li");
+    var dot  = document.createElement("span");
+    dot.className = "legend-dot";
+    dot.style.background = p.color;
+    var name = document.createElement("span");
+    name.className = "legend-name";
+    name.textContent = p.name;
+    var pct  = document.createElement("span");
+    pct.className = "legend-pct";
+    pct.textContent = p.pct + "%";
+    li.appendChild(dot);
+    li.appendChild(name);
+    li.appendChild(pct);
+    ul.appendChild(li);
+  });
+})();
+
+// ── Bar chart ────────────────────────────────────────────────────────────────
+(function(){
+  var container = document.getElementById("bar-chart");
+  var maxPct = GENERA[0].pct;
+
+  GENERA.forEach(function(g, i){
+    var color = PHYLUM_COLOR[g.phylum] || "#95a5a6";
+    var widthPct = (g.pct / maxPct * 100).toFixed(1);
+    var showInside = g.pct >= 4;
+
+    var row = document.createElement("div");
+    row.className = "bar-row";
+
+    var label = document.createElement("div");
+    label.className = "bar-label";
+    label.textContent = g.genus;
+    label.title = g.genus;
+
+    var track = document.createElement("div");
+    track.className = "bar-track";
+
+    var fill = document.createElement("div");
+    fill.className = "bar-fill";
+    fill.style.width = "0%";
+    fill.style.background = color;
+
+    if (showInside) {
+      var pctSpan = document.createElement("span");
+      pctSpan.className = "bar-pct";
+      pctSpan.textContent = g.pct + "%";
+      fill.appendChild(pctSpan);
+    }
+
+    track.appendChild(fill);
+    row.appendChild(label);
+    row.appendChild(track);
+
+    if (!showInside) {
+      var outside = document.createElement("span");
+      outside.className = "bar-pct outside";
+      outside.textContent = g.pct + "%";
+      row.appendChild(outside);
+    }
+
+    container.appendChild(row);
+
+    // animate in
+    setTimeout(function(){
+      fill.style.width = widthPct + "%";
+    }, 50 + i * 40);
+  });
+})();
+</script>
+
+</body>
+</html>

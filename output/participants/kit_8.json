@@ -1,7 +1,5 @@
 {
   "kit_id": "8",
-  "zipcode": "28301",
-  "county": "Cumberland",
   "tailpiece": {
     "sample_id": "8_P",
     "top5_taxa": [
@@ -38,9 +36,9 @@
       "richness_percentile": 90
     },
     "beta_diversity": {
-      "similarity_same_county": "NA",
-      "similarity_other_counties": 0.4242,
-      "similarity_percentile": 70
+      "similarity_percentile": 70,
+      "similarity_same_state": "NA",
+      "similarity_other_states": 0.4242
     },
     "guilds": {
       "personal_care_degraders": {
@@ -100,5 +98,6 @@
     ],
     "total_taxa": 187
   },
-  "py_similarity": 0.2981
+  "py_similarity": 0.2981,
+  "state": "North Carolina"
 }

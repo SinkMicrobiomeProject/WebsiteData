@@ -2,31 +2,26 @@
   "last_updated": "2026-05-01 08:22:29",
   "total_samples": 10,
   "total_taxa": 142,
-  "taxa_by_county": {
-    "Orange": {
-      "county": "Orange",
-      "n_samples": 3,
-      "n_taxa": 139
+  "taxa_by_state": {
+    "North Carolina": {
+      "state": "North Carolina",
+      "n_samples": 4,
+      "n_taxa": 142
     },
-    "Wake": {
-      "county": "Wake",
+    "Michigan": {
+      "state": "Michigan",
       "n_samples": 2,
-      "n_taxa": 133
+      "n_taxa": 130
     },
-    "Durham": {
-      "county": "Durham",
+    "California": {
+      "state": "California",
       "n_samples": 3,
       "n_taxa": 139
     },
-    "New Hanover": {
-      "county": "New Hanover",
+    "Georgia": {
+      "state": "Georgia",
       "n_samples": 1,
-      "n_taxa": 125
-    },
-    "Cumberland": {
-      "county": "Cumberland",
-      "n_samples": 1,
-      "n_taxa": 109
+      "n_taxa": 120
     }
   },
   "top5_taxa_overall": [
@@ -56,8 +51,8 @@
       "mean_abundance": 7.75
     }
   ],
-  "top5_taxa_by_county": {
-    "Orange": [
+  "top5_taxa_by_state": {
+    "North Carolina": [
       {
         "rank": 1,
         "genus": "Unclassified",
@@ -84,7 +79,7 @@
         "mean_abundance": 6.22
       }
     ],
-    "Wake": [
+    "Michigan": [
       {
         "rank": 1,
         "genus": "Pantoea",
@@ -111,7 +106,7 @@
         "mean_abundance": 9.9
       }
     ],
-    "Durham": [
+    "California": [
       {
         "rank": 1,
         "genus": "Acinetobacter",
@@ -120,7 +115,7 @@
       {
         "rank": 2,
         "genus": "Comamonas",
-        "mean_abundance": 15
+        "mean_abundance": 15.0
       },
       {
         "rank": 3,
@@ -130,7 +125,7 @@
       {
         "rank": 4,
         "genus": "Unclassified",
-        "mean_abundance": 7
+        "mean_abundance": 7.0
       },
       {
         "rank": 5,
@@ -138,34 +133,7 @@
         "mean_abundance": 6.56
       }
     ],
-    "New Hanover": [
-      {
-        "rank": 1,
-        "genus": "Acinetobacter",
-        "mean_abundance": 42.18
-      },
-      {
-        "rank": 2,
-        "genus": "Pseudomonas",
-        "mean_abundance": 14.2
-      },
-      {
-        "rank": 3,
-        "genus": "Acinetobacter",
-        "mean_abundance": 12.24
-      },
-      {
-        "rank": 4,
-        "genus": "Comamonas",
-        "mean_abundance": 5.92
-      },
-      {
-        "rank": 5,
-        "genus": "Klebsiella",
-        "mean_abundance": 4.82
-      }
-    ],
-    "Cumberland": [
+    "Georgia": [
       {
         "rank": 1,
         "genus": "Acinetobacter",
@@ -193,6 +161,10 @@
       }
     ]
   },
-  "counties": ["Orange", "Wake", "Durham", "New Hanover", "Cumberland"],
-  "zipcodes": [27278, 27603, 27701, 28401, 28301]
+  "states": [
+    "North Carolina",
+    "Michigan",
+    "California",
+    "Georgia"
+  ]
 }

@@ -1,7 +1,5 @@
 {
   "kit_id": "29",
-  "zipcode": "27278",
-  "county": "Orange",
   "tailpiece": {
     "sample_id": "29_P",
     "top5_taxa": [
@@ -38,9 +36,9 @@
       "richness_percentile": 40
     },
     "beta_diversity": {
-      "similarity_same_county": 0.3737,
-      "similarity_other_counties": 0.5007,
-      "similarity_percentile": 100
+      "similarity_percentile": 100,
+      "similarity_same_state": 0.3737,
+      "similarity_other_states": 0.5007
     },
     "guilds": {
       "personal_care_degraders": {
@@ -100,5 +98,6 @@
     ],
     "total_taxa": 197
   },
-  "py_similarity": 0.5882
+  "py_similarity": 0.5882,
+  "state": "North Carolina"
 }

@@ -9,6 +9,35 @@ const DATA_PATH = '../output/';
 let participantData = null;
 let percentileReference = null;
 
+// Brief public-friendly descriptions for common bacterial genera
+const GENUS_DESCRIPTIONS = {
+    'Acinetobacter':      'Thrives on moist surfaces; a common resident of sink drains',
+    'Comamonas':          'Water-dwelling; helps break down organic matter in pipes',
+    'Pseudomonas':        'Highly versatile; found in soil, water, and on surfaces worldwide',
+    'Pantoea':            'Common on plants and in soil; enters homes through water',
+    'Diaphorobacter':     'Freshwater specialist; breaks down pollutants in pipes and drains',
+    'Enterobacter':       'Found in soil, water, and the human gut',
+    'Brevundimonas':      'Aquatic bacteria; commonly detected in tap water and plumbing',
+    'Klebsiella':         'Found in soil, water, and the human intestine',
+    'Janthinobacterium':  'Cold-loving; produces a distinctive purple pigment in nature',
+    'Rossellomorea':      'Spore-forming soil bacterium; moisture-tolerant indoor survivor',
+    'Chryseobacterium':   'Loves cold, wet environments; common in pipes and refrigerators',
+    'Serratia':           'Widespread in soil and water; a classic sink inhabitant',
+    'Herbaspirillum':     'Associated with plant roots; occasionally detected in water systems',
+    'Stenotrophomonas':   'Widespread in soil and water; breaks down diverse compounds',
+    'Pseudoxanthomonas':  'Soil and water dweller; helps degrade organic material',
+    'Achromobacter':      'Detected in chlorinated tap water and moist indoor surfaces',
+    'Sphingobacterium':   'Breaks down complex organic molecules in soil and water',
+    'Ochrobactrum':       'Hardy environmental bacterium found in soil and water worldwide',
+    'Agrobacterium':      'Commonly found in soil; associated with plant root systems',
+    'Allorhizobium':      'Relative of nitrogen-fixing bacteria; found in soil and water',
+    'Bosea':              'Environmental bacterium naturally occurring in soil and water',
+    'Pedobacter':         'Freshwater and soil specialist; thrives in cool, moist habitats',
+    'Phytobacter':        'Plant-associated; occasionally found in household water systems',
+    'Flavobacterium':     'Aquatic bacteria; thrives in cold, freshwater environments',
+    'Unclassified':       'Bacteria not yet assigned to a named scientific group',
+};
+
 // Guild descriptions for display
 const GUILD_INFO = {
     personal_care_degraders: {
@@ -87,7 +116,7 @@ function populatePage() {
 
     // Update header
     document.getElementById('kit-id').textContent = participantData.kit_id;
-    document.getElementById('county-name').textContent = participantData.county;
+    document.getElementById('state-name').textContent = participantData.state;
     document.getElementById('form-kit-id').value = participantData.kit_id;
     document.title = `Kit ${participantData.kit_id} Results - The Sink Microbiome Project`;
 
@@ -126,6 +155,7 @@ function populateTopTaxa(tailpiece) {
 
         const barWidth = (taxon.relative_abundance / maxAbundance * 100).toFixed(0);
 
+        const description = GENUS_DESCRIPTIONS[taxon.genus] || '';
         item.innerHTML = `
             <div class="taxa-rank">${index + 1}</div>
             <div class="taxa-info" style="flex: 1;">
@@ -133,6 +163,7 @@ function populateTopTaxa(tailpiece) {
                     <span class="taxa-name">${taxon.genus}</span>
                     <span class="taxa-abundance">${taxon.relative_abundance.toFixed(1)}%</span>
                 </div>
+                ${description ? `<div class="taxa-description">${description}</div>` : ''}
                 <div class="taxa-bar" style="width: ${barWidth}%;"></div>
             </div>
         `;
@@ -210,24 +241,24 @@ function populateBetaDiversity(tailpiece) {
 
     if (!beta) return;
 
-    // Same county (note: JSON uses similarity_same_county)
-    if (beta.similarity_same_county !== undefined) {
-        document.getElementById('same-county-value').textContent = beta.similarity_same_county.toFixed(2);
+    // Same state
+    if (beta.similarity_same_state !== undefined) {
+        document.getElementById('same-state-value').textContent = beta.similarity_same_state.toFixed(2);
     }
-    document.getElementById('county-compare').textContent = participantData.county;
+    document.getElementById('state-compare').textContent = participantData.state;
 
-    // Other counties (note: JSON uses similarity_other_counties)
-    if (beta.similarity_other_counties !== undefined) {
-        document.getElementById('other-county-value').textContent = beta.similarity_other_counties.toFixed(2);
+    // Other states
+    if (beta.similarity_other_states !== undefined) {
+        document.getElementById('other-state-value').textContent = beta.similarity_other_states.toFixed(2);
     }
 
     // Interpretation
     let interpretation = '';
-    if (beta.similarity_same_county !== undefined && beta.similarity_other_counties !== undefined) {
-        if (beta.similarity_same_county > beta.similarity_other_counties) {
-            interpretation = `Your sink is more similar to other sinks in ${participantData.county} County than to sinks elsewhere. Geographic proximity may influence bacterial communities!`;
+    if (beta.similarity_same_state !== undefined && beta.similarity_other_states !== undefined) {
+        if (beta.similarity_same_state > beta.similarity_other_states) {
+            interpretation = `Your sink is more similar to other sinks in ${participantData.state} than to sinks in other states. Geographic proximity may influence bacterial communities!`;
         } else {
-            interpretation = `Interestingly, your sink is as similar to sinks in other counties as to those in ${participantData.county} County. Local conditions may matter more than geography.`;
+            interpretation = `Interestingly, your sink is as similar to sinks in other states as to those in ${participantData.state}. Local conditions may matter more than geography.`;
         }
     }
     document.getElementById('beta-interpretation').textContent = interpretation;

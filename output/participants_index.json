@@ -1,47 +1,38 @@
 [
   {
     "kit_id": "34",
-    "zipcode": "27278",
-    "county": "Orange"
+    "state": "North Carolina"
   },
   {
     "kit_id": "12",
-    "zipcode": "27603",
-    "county": "Wake"
+    "state": "Michigan"
   },
   {
     "kit_id": "29",
-    "zipcode": "27278",
-    "county": "Orange"
+    "state": "North Carolina"
   },
   {
     "kit_id": "44",
-    "zipcode": "27701",
-    "county": "Durham"
+    "state": "California"
   },
   {
     "kit_id": "56",
-    "zipcode": "27701",
-    "county": "Durham"
+    "state": "California"
   },
   {
     "kit_id": "58",
-    "zipcode": "27701",
-    "county": "Durham"
+    "state": "California"
   },
   {
     "kit_id": "65",
-    "zipcode": "28401",
-    "county": "New Hanover"
+    "state": "Michigan"
   },
   {
     "kit_id": "70",
-    "zipcode": "27603",
-    "county": "Wake"
+    "state": "Georgia"
   },
   {
     "kit_id": "8",
-    "zipcode": "28301",
-    "county": "Cumberland"
+    "state": "North Carolina"
   }
 ]

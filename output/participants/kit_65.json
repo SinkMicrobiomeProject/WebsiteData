@@ -1,7 +1,5 @@
 {
   "kit_id": "65",
-  "zipcode": "28401",
-  "county": "New Hanover",
   "tailpiece": {
     "sample_id": "65_P",
     "top5_taxa": [
@@ -38,9 +36,9 @@
       "richness_percentile": 50
     },
     "beta_diversity": {
-      "similarity_same_county": "NA",
-      "similarity_other_counties": 0.4228,
-      "similarity_percentile": 60
+      "similarity_percentile": 60,
+      "similarity_same_state": "NA",
+      "similarity_other_states": 0.4228
     },
     "guilds": {
       "personal_care_degraders": {
@@ -100,5 +98,6 @@
     ],
     "total_taxa": 194
   },
-  "py_similarity": 0.5151
+  "py_similarity": 0.5151,
+  "state": "Michigan"
 }

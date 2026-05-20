@@ -58,8 +58,7 @@ colnames(metadata)[1] <- "Sample_ID"  # Standardize column name
 metadata$Sample_ID <- gsub(" ", ".", metadata$Sample_ID)  # Replace spaces with dots if needed
 
 cat("  - Loaded metadata for", nrow(metadata), "samples\n")
-cat("  - Counties:", paste(unique(metadata$County), collapse = ", "), "\n")
-cat("  - Zipcodes:", paste(unique(metadata$Zipcode), collapse = ", "), "\n")
+cat("  - States:", paste(unique(metadata$State), collapse = ", "), "\n")
 
 # -----------------------------------------------------------------------------
 # Filter and Match Samples

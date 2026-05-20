@@ -1,7 +1,5 @@
 {
   "kit_id": "56",
-  "zipcode": "27701",
-  "county": "Durham",
   "tailpiece": {
     "sample_id": "56_P",
     "top5_taxa": [
@@ -38,9 +36,9 @@
       "richness_percentile": 30
     },
     "beta_diversity": {
-      "similarity_same_county": 0.3969,
-      "similarity_other_counties": 0.3858,
-      "similarity_percentile": 40
+      "similarity_percentile": 40,
+      "similarity_same_state": 0.3969,
+      "similarity_other_states": 0.3858
     },
     "guilds": {
       "personal_care_degraders": {
@@ -100,5 +98,6 @@
     ],
     "total_taxa": 190
   },
-  "py_similarity": 0.3991
+  "py_similarity": 0.3991,
+  "state": "California"
 }

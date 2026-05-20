@@ -197,7 +197,7 @@ section h2 {
 
 .taxa-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     background: var(--background);
     border-radius: 8px;
     padding: 15px 20px;
@@ -232,11 +232,19 @@ section h2 {
     color: var(--primary-blue);
 }
 
+.taxa-description {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-style: normal;
+    margin-top: 3px;
+    margin-bottom: 4px;
+}
+
 .taxa-bar {
     height: 8px;
     background: linear-gradient(90deg, var(--primary-green) 0%, var(--light-blue) 100%);
     border-radius: 4px;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 /* Lookup Section */

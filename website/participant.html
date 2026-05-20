@@ -29,16 +29,17 @@
         <!-- Participant Header -->
         <section class="participant-header">
             <h2>Results for Kit <span id="kit-id">--</span></h2>
+            <input type="hidden" id="form-kit-id" value="">
             <p class="participant-location">
-                <span id="county-name">--</span> County, NC
+                <span id="state-name">--</span>
             </p>
         </section>
 
         <!-- Top Taxa -->
         <section class="top-taxa-section">
-            <h2>Your Top 5 Bacterial Genera</h2>
+            <h2>Your Top 5 Bacterial Groups</h2>
             <p class="section-description">
-                These are the most abundant bacteria found in your sink's tail piece sample.
+                These are the most abundant bacteria found in your sink's drain sample.
             </p>
             <div class="taxa-list" id="top-taxa-list">
                 <!-- Populated by JavaScript -->
@@ -50,10 +51,10 @@
 
         <!-- Similarity Score -->
         <section class="similarity-section">
-            <h2>Tail Piece vs. Countertop Similarity</h2>
+            <h2>Drain vs. Countertop Similarity</h2>
             <p class="section-description">
-                This score shows how similar the bacterial communities are between your sink's tail piece (P)
-                and the countertop around the faucet (Y).
+                This score shows how similar the bacterial communities are between your sink's drain
+                and the countertop.
             </p>
             <div class="similarity-display">
                 <div class="similarity-gauge">
@@ -87,17 +88,6 @@
                     </div>
                     <p class="metric-description">Number of unique bacterial types</p>
                 </div>
-                <div class="percentile-item">
-                    <div class="percentile-label">
-                        <span class="metric-name">Shannon Diversity</span>
-                        <span class="percentile-value" id="shannon-percentile">--</span>
-                    </div>
-                    <div class="percentile-bar">
-                        <div class="percentile-fill" id="shannon-fill"></div>
-                        <div class="percentile-marker" id="shannon-marker"></div>
-                    </div>
-                    <p class="metric-description">Diversity accounting for abundance evenness</p>
-                </div>
             </div>
         </section>
 
@@ -105,19 +95,19 @@
         <section class="beta-section">
             <h2>Beta Diversity: How Does Your Sink Compare?</h2>
             <p class="section-description">
-                Beta diversity measures how similar your sink's bacteria are to others. Higher values mean
+                Beta diversity measures how similar your sink's bacterial communities are to others. Higher values mean
                 more similar communities. Values range from 0 (completely different) to 1 (identical).
             </p>
             <div class="beta-comparison">
                 <div class="beta-card">
-                    <h3>Compared to Your County</h3>
-                    <div class="beta-value" id="same-county-value">--</div>
-                    <p class="beta-label">Average similarity to other <span id="county-compare">--</span> County sinks</p>
+                    <h3>Compared to Your State</h3>
+                    <div class="beta-value" id="same-state-value">--</div>
+                    <p class="beta-label">Average similarity to other <span id="state-compare">--</span> sinks</p>
                 </div>
                 <div class="beta-card">
-                    <h3>Compared to Other Counties</h3>
-                    <div class="beta-value" id="other-county-value">--</div>
-                    <p class="beta-label">Average similarity to sinks in other counties</p>
+                    <h3>Compared to Other States</h3>
+                    <div class="beta-value" id="other-state-value">--</div>
+                    <p class="beta-label">Average similarity to sinks in other states</p>
                 </div>
             </div>
             <p class="beta-interpretation" id="beta-interpretation">
@@ -137,29 +127,6 @@
             </div>
         </section>
 
-        <!-- Hypothesis Submission -->
-        <section class="hypothesis-section">
-            <h2>Have a hypothesis about these results? Share them here!</h2>
-            <form class="hypothesis-form" action="https://formsubmit.co/sinkmicrobiome@duke.edu" method="POST">
-                <input type="hidden" name="_subject" value="Sink Microbiome Project - Hypothesis Submission">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="kit_id" id="form-kit-id" value="">
-                <div class="form-group">
-                    <label for="name">Your Name (optional):</label>
-                    <input type="text" id="name" name="name" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email (optional):</label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="hypothesis">Your Hypothesis:</label>
-                    <textarea id="hypothesis" name="hypothesis" rows="5" placeholder="Share your thoughts about what these results might mean..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Submit Hypothesis</button>
-            </form>
-        </section>
 
         <!-- Updates Notice -->
         <section class="updates-notice">
