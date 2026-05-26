@@ -106,9 +106,6 @@ function populatePage() {
     // Populate state grid
     populateStateGrid();
 
-    // Populate top taxa
-    populateTopTaxa();
-
     // Populate participants grid
     populateParticipantsGrid();
 
@@ -161,6 +158,7 @@ function populateFigure() {
             const color = PHYLUM_COLOR[g.phylum] || '#95a5a6';
             const widthPct = (g.pct / maxPct * 100).toFixed(1);
             const showInside = g.pct >= 4;
+            const desc = i < 5 ? (GENUS_DESCRIPTIONS[g.genus] || '') : '';
             const row = document.createElement('div');
             row.className = 'bar-row';
             row.innerHTML = `<div class="bar-label" title="${g.genus}">${g.genus}</div>
@@ -171,6 +169,12 @@ function populateFigure() {
                              </div>
                              ${!showInside ? `<span class="bar-pct outside">${g.pct}%</span>` : ''}`;
             barContainer.appendChild(row);
+            if (desc) {
+                const descEl = document.createElement('div');
+                descEl.className = 'bar-desc';
+                descEl.textContent = desc;
+                barContainer.appendChild(descEl);
+            }
             setTimeout(() => { document.getElementById(`fig-bar-${i}`).style.width = widthPct + '%'; }, 50 + i * 40);
         });
     }
@@ -265,7 +269,7 @@ function populateParticipantsGrid() {
         card.href = `participant.html?kit=${participant.kit_id}`;
 
         card.innerHTML = `
-            <div class="kit-id">Kit ${participant.kit_id}</div>
+            <div class="kit-id">${participant.kit_id}</div>
             <div class="county">${participant.state}</div>
         `;
 

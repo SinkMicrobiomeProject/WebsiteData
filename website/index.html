@@ -32,8 +32,21 @@
         <!-- Project Description -->
         <section class="project-intro">
             <p class="intro-text">
-                Hidden within every bathroom sink is a thriving microbial community — hundreds of bacterial species shaped by who uses the sink, what goes down the drain, and the personal care products in your routine. The Sink Microbiome Project is a nationwide citizen science initiative using full-length DNA sequencing to map the bacteria living in residential sinks across the United States. Enter your kit ID below to discover what's living in your sink, or explore the map and top taxa to see what we've found so far.
+                Bathroom sinks are home to diverse communities of microbes. The types and abundance of these microbes can be influenced by factors such as how often a sink is used, sink design, and personal care products used in daily routines. The Sink Microbiome Project is a nationwide community science initiative that explores how these factors shape sink microbial communities and how they might affect human health. By participating, you are helping researchers better understand the microbes that live in our built environments and identify ways to promote healthier homes and healthcare facilities.
             </p>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <h2>Meet the Microbes That Climb Out of Sinks</h2>
+            <p>Learn about the science behind this project in this short PBS video.</p>
+            <div class="video-embed">
+                <iframe
+                    src="https://player.pbs.org/viralplayer/6cvdpl/"
+                    allowfullscreen
+                    title="Meet the Microbes That Climb Out of Sinks – PBS">
+                </iframe>
+            </div>
         </section>
 
         <!-- Summary Statistics -->
@@ -63,17 +76,9 @@
             </div>
         </section>
 
-        <!-- Top Taxa Overall -->
-        <section class="top-taxa-section">
-            <h2>Top 5 Most Common Bacterial Groups</h2>
-            <div class="taxa-list" id="top-taxa-overall">
-                <!-- Populated by JavaScript -->
-            </div>
-        </section>
-
         <!-- Microbial Community Figure -->
         <section class="top-taxa-section">
-            <h2>Who's Living in Our Sinks?</h2>
+            <h2>Bacteria Identified from Sink Drains</h2>
             <div class="figure-grid">
                 <div class="figure-panel donut-panel">
                     <h2>Bacteria by Major Group (Phylum)</h2>
@@ -114,27 +119,13 @@
             </div>
         </section>
 
-        <!-- Hypothesis Submission -->
+        <!-- Hypothesis Link -->
         <section class="hypothesis-section">
-            <h2>What do these results mean? Share your ideas here!</h2>
-            <form class="hypothesis-form" action="https://formsubmit.co/sinkmicrobiome@duke.edu" method="POST">
-                <input type="hidden" name="_subject" value="Sink Microbiome Project - Hypothesis Submission">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <div class="form-group">
-                    <label for="name">Your Name (optional):</label>
-                    <input type="text" id="name" name="name" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email (optional):</label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="hypothesis">Your Hypothesis:</label>
-                    <textarea id="hypothesis" name="hypothesis" rows="5" placeholder="Share your thoughts about what these results might mean..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Submit Hypothesis</button>
-            </form>
+            <h2><a href="hypothesis.html" style="color: inherit; text-decoration: none;">What do these results mean? Share your ideas here! &rarr;</a></h2>
+            <p style="text-align:center; margin-top: 12px; color: var(--text-light);">Noticed a pattern or have a hypothesis about what shapes the microbial communities in bathroom sinks? We'd love to hear from you.</p>
+            <div style="text-align:center; margin-top: 20px;">
+                <a href="hypothesis.html" class="submit-btn" style="display:inline-block; text-decoration:none; padding: 14px 32px;">Share Your Hypothesis</a>
+            </div>
         </section>
 
         <!-- Updates Notice -->
