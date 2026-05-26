@@ -65,6 +65,10 @@
       "oral_commuters": {
         "score": 0.45,
         "percentile": 90
+      },
+      "soil_associates": {
+        "score": 18.59,
+        "percentile": 90
       }
     }
   },

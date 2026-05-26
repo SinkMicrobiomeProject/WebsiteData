@@ -27,13 +27,18 @@
     },
     {
       "guild_id": "Skin_commuter",
-      "guild_name": "Skin Commuters",
+      "guild_name": "Skin Associates",
       "description": "Bacteria typically found on human skin, transferred during hand washing"
     },
     {
       "guild_id": "Oral_commuter",
-      "guild_name": "Oral Commuters",
+      "guild_name": "Oral Associates",
       "description": "Bacteria from the mouth, transferred during tooth brushing and spitting"
+    },
+    {
+      "guild_id": "Soil_associate",
+      "guild_name": "Soil Associates",
+      "description": "Bacteria commonly found in soil and plant root environments"
     }
   ]
 }
