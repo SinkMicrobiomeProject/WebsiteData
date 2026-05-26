@@ -28,7 +28,7 @@ cat("  - Loaded", nrow(guilds_ref), "genera with guild assignments\n")
 
 # Guild columns
 guild_cols <- c("Personal_care_degrader", "Moisture_lover", "Disinfectant_survivalist",
-                "Odor_producer", "Skin_commuter", "Oral_commuter")
+                "Odor_producer", "Skin_commuter", "Oral_commuter", "Soil_associate")
 
 # Summary of guild reference
 cat("  - Guild reference summary:\n")
@@ -150,8 +150,9 @@ guild_names_friendly <- data.frame(
     "Moisture Lovers",
     "Disinfectant Survivalists",
     "Odor Producers",
-    "Skin Commuters",
-    "Oral Commuters"
+    "Skin Associates",
+    "Oral Associates",
+    "Soil Associates"
   ),
   description = c(
     "Bacteria that break down soaps, surfactants, and personal care products",
@@ -159,7 +160,8 @@ guild_names_friendly <- data.frame(
     "Bacteria that can survive exposure to household disinfectants",
     "Bacteria that produce volatile compounds contributing to sink odors",
     "Bacteria typically found on human skin, transferred during hand washing",
-    "Bacteria from the mouth, transferred during tooth brushing and spitting"
+    "Bacteria from the mouth, transferred during tooth brushing and spitting",
+    "Bacteria commonly found in soil and plant root environments"
   ),
   stringsAsFactors = FALSE
 )

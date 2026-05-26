@@ -34,17 +34,17 @@ body {
 /* Top Nav */
 .top-nav {
     background-color: #1a3a5c;
-    padding: 8px 20px;
+    padding: 12px 30px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 24px;
+    gap: 36px;
 }
 
 .top-nav a {
     color: #cfe2f3;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 1.275rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -53,6 +53,94 @@ body {
 
 .top-nav a:hover {
     color: #ffffff;
+}
+
+/* Funding statement */
+.funding-text {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    text-align: center;
+    max-width: 800px;
+    margin: 8px auto 0;
+    padding: 0 20px;
+}
+
+/* Microbial community figure (shared between index and microbes pages) */
+.figure-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.figure-panel {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    padding: 28px 24px;
+}
+.figure-panel h2 {
+    font-size: 1em;
+    font-weight: 700;
+    margin: 0 0 18px;
+    text-align: center;
+    letter-spacing: .02em;
+}
+.donut-panel { flex: 0 0 300px; }
+.bar-panel    { flex: 1 1 400px; min-width: 280px; }
+.donut-wrap   { position: relative; width: 200px; height: 200px; margin: 0 auto 20px; }
+.donut-wrap svg { width: 100%; height: 100%; overflow: visible; }
+.donut-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center; pointer-events: none;
+}
+.donut-center .big   { font-size: 1.6em; font-weight: 700; line-height: 1; }
+.donut-center .small { font-size: 0.7em; opacity: .6; }
+.phylum-legend { list-style: none; margin: 0; padding: 0; }
+.phylum-legend li {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85em; padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.phylum-legend li:last-child { border-bottom: none; }
+.legend-dot  { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.legend-name { flex: 1; font-style: italic; }
+.legend-pct  { font-weight: 600; white-space: nowrap; }
+.bar-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 10px; font-size: 0.82em;
+}
+.bar-label {
+    width: 140px; flex-shrink: 0;
+    text-align: right; font-style: italic;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.bar-track {
+    flex: 1; background: #f0f2f5; border-radius: 4px; height: 20px;
+    position: relative; overflow: hidden;
+}
+.bar-fill   { height: 100%; border-radius: 4px; transition: width .6s ease; }
+.bar-pct {
+    position: absolute; right: 6px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.78em; font-weight: 600; color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+.bar-pct.outside {
+    position: static; transform: none;
+    color: #555; text-shadow: none; flex-shrink: 0; width: 36px;
+    font-size: 0.78em; font-weight: 600;
+}
+.figure-note {
+    text-align: center; font-size: 0.75em; opacity: .5;
+    margin: 0 auto 40px; max-width: 700px; padding: 0 20px;
+}
+@media (max-width: 600px) {
+    .bar-label { width: 100px; font-size: 0.75em; }
 }
 
 /* Header */

@@ -44,10 +44,6 @@ const GUILD_INFO = {
         name: 'Personal Care Product Degraders',
         description: 'Bacteria that can break down soaps, shampoos, and other personal care products commonly found in bathroom sinks.'
     },
-    moisture_lovers: {
-        name: 'Moisture Lovers',
-        description: 'Water-loving bacteria that thrive in the constantly wet environment of sink drains.'
-    },
     disinfectant_survivalists: {
         name: 'Disinfectant Survivalists',
         description: 'Bacteria with resistance to common household disinfectants and cleaning products.'
@@ -56,13 +52,21 @@ const GUILD_INFO = {
         name: 'Odor Producers',
         description: 'Bacteria that can produce volatile compounds, sometimes contributing to drain odors.'
     },
+    moisture_lovers: {
+        name: 'Moisture Lovers',
+        description: 'Water-loving bacteria that thrive in the constantly wet environment of sink drains.'
+    },
     skin_commuters: {
-        name: 'Skin Commuters',
+        name: 'Skin Associates',
         description: 'Bacteria originally from human skin, transferred during hand washing.'
     },
     oral_commuters: {
-        name: 'Oral Commuters',
+        name: 'Oral Associates',
         description: 'Bacteria from the mouth, introduced during tooth brushing and other oral hygiene activities.'
+    },
+    soil_associates: {
+        name: 'Soil Associates',
+        description: 'Bacteria commonly found in soil and plant root environments, entering the home through tap water and household dust.'
     }
 };
 
@@ -197,11 +201,11 @@ function populateSimilarity() {
     // Set interpretation
     let interpretation = '';
     if (score >= 0.7) {
-        interpretation = 'Your tail piece and countertop have very similar bacterial communities! This suggests similar environmental conditions or cross-contamination between these locations.';
+        interpretation = 'Your drain and countertop have very similar bacterial communities! This suggests similar environmental conditions or cross-contamination between these locations.';
     } else if (score >= 0.4) {
-        interpretation = 'Your tail piece and countertop have moderately similar bacterial communities. Some bacteria are shared, but each location has its own distinct community.';
+        interpretation = 'Your drain and countertop have moderately similar bacterial communities. Some bacteria are shared, but each location has its own distinct community.';
     } else {
-        interpretation = 'Your tail piece and countertop have quite different bacterial communities. Each location hosts its own unique set of bacteria.';
+        interpretation = 'Your drain and countertop have quite different bacterial communities. Each location hosts its own unique set of bacteria.';
     }
     document.getElementById('similarity-interpretation').textContent = interpretation;
 }
@@ -279,11 +283,12 @@ function populateFunctionalGuilds(tailpiece) {
     // Define guild display order and keys
     const guildOrder = [
         'personal_care_degraders',
-        'moisture_lovers',
         'disinfectant_survivalists',
         'odor_producers',
+        'moisture_lovers',
         'skin_commuters',
-        'oral_commuters'
+        'oral_commuters',
+        'soil_associates'
     ];
 
     guildOrder.forEach(guildKey => {

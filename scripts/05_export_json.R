@@ -229,6 +229,10 @@ for (kit in kit_ids) {
         oral_commuters = list(
           score = guild_row$Oral_commuter,
           percentile = guild_row$Oral_commuter_percentile
+        ),
+        soil_associates = list(
+          score = guild_row$Soil_associate,
+          percentile = guild_row$Soil_associate_percentile
         )
       )
     }

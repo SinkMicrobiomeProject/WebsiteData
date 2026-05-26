@@ -34,6 +34,35 @@ const GENUS_DESCRIPTIONS = {
     'Unclassified':       'Bacteria not yet assigned to a named scientific group',
 };
 
+// Static figure data (from OTU table analysis)
+const PHYLA = [
+    { name: "Proteobacteria",  gtdb: "Pseudomonadota", pct: 91.7, color: "#2c6ea6" },
+    { name: "Firmicutes",      gtdb: "Bacillota",       pct: 3.9,  color: "#27ae60" },
+    { name: "Bacteroidetes",   gtdb: "Bacteroidota",    pct: 2.4,  color: "#e67e22" },
+    { name: "Unclassified",    gtdb: "Unclassified",    pct: 1.4,  color: "#95a5a6" },
+    { name: "Actinobacteria",  gtdb: "Actinomycetota",  pct: 0.4,  color: "#8e44ad" },
+    { name: "Rare (<0.1%)",    gtdb: "",                pct: 0.2,  color: "#bdc3c7" }
+];
+const GENERA_FIG = [
+    { genus: "Acinetobacter",      phylum: "Pseudomonadota", pct: 34.2 },
+    { genus: "Comamonas",          phylum: "Pseudomonadota", pct: 12.2 },
+    { genus: "Pseudomonas",        phylum: "Pseudomonadota", pct: 8.7  },
+    { genus: "Pantoea",            phylum: "Pseudomonadota", pct: 7.9  },
+    { genus: "Diaphorobacter",     phylum: "Pseudomonadota", pct: 5.5  },
+    { genus: "Rossellomorea",      phylum: "Bacillota",      pct: 3.1  },
+    { genus: "Klebsiella",         phylum: "Pseudomonadota", pct: 2.3  },
+    { genus: "Enterobacter",       phylum: "Pseudomonadota", pct: 2.0  },
+    { genus: "Brevundimonas",      phylum: "Pseudomonadota", pct: 1.8  },
+    { genus: "Janthinobacterium",  phylum: "Pseudomonadota", pct: 1.6  },
+    { genus: "Chryseobacterium",   phylum: "Bacteroidota",   pct: 1.2  },
+    { genus: "Serratia",           phylum: "Pseudomonadota", pct: 0.9  },
+    { genus: "Herbaspirillum",     phylum: "Pseudomonadota", pct: 0.8  },
+    { genus: "Sphingobacterium",   phylum: "Bacteroidota",   pct: 0.7  },
+    { genus: "Achromobacter",      phylum: "Pseudomonadota", pct: 0.5  }
+];
+const PHYLUM_COLOR = { "Pseudomonadota": "#2c6ea6", "Bacillota": "#27ae60",
+                       "Bacteroidota": "#e67e22", "Actinomycetota": "#8e44ad" };
+
 // Global data storage
 let summaryData = null;
 let participantsIndex = null;
@@ -82,6 +111,75 @@ function populatePage() {
 
     // Populate participants grid
     populateParticipantsGrid();
+
+    // Render microbial community figure
+    populateFigure();
+}
+
+function populateFigure() {
+    // Donut chart
+    const svg = document.getElementById('donut-svg');
+    if (!svg) return;
+    const cx = 100, cy = 100, r = 80, inner = 52;
+    const total = PHYLA.reduce((s, p) => s + p.pct, 0);
+    let angle = -Math.PI / 2;
+    PHYLA.forEach(p => {
+        const sweep = (p.pct / total) * 2 * Math.PI;
+        const x1 = cx + r * Math.cos(angle), y1 = cy + r * Math.sin(angle);
+        const x2 = cx + r * Math.cos(angle + sweep), y2 = cy + r * Math.sin(angle + sweep);
+        const xi1 = cx + inner * Math.cos(angle), yi1 = cy + inner * Math.sin(angle);
+        const xi2 = cx + inner * Math.cos(angle + sweep), yi2 = cy + inner * Math.sin(angle + sweep);
+        const large = sweep > Math.PI ? 1 : 0;
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d',
+            `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${inner} ${inner} 0 ${large} 0 ${xi1} ${yi1} Z`);
+        path.setAttribute('fill', p.color);
+        path.setAttribute('stroke', '#fff');
+        path.setAttribute('stroke-width', '2');
+        path.addEventListener('mouseover', function() { this.setAttribute('opacity', '0.82'); });
+        path.addEventListener('mouseout',  function() { this.setAttribute('opacity', '1'); });
+        svg.appendChild(path);
+        angle += sweep;
+    });
+    document.getElementById('donut-total').textContent = '142';
+
+    // Phylum legend
+    const ul = document.getElementById('phylum-legend');
+    if (ul) PHYLA.forEach(p => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="legend-dot" style="background:${p.color}"></span>
+                        <span class="legend-name">${p.name}</span>
+                        <span class="legend-pct">${p.pct}%</span>`;
+        ul.appendChild(li);
+    });
+
+    // Bar chart
+    const barContainer = document.getElementById('bar-chart');
+    if (barContainer) {
+        const maxPct = GENERA_FIG[0].pct;
+        GENERA_FIG.forEach((g, i) => {
+            const color = PHYLUM_COLOR[g.phylum] || '#95a5a6';
+            const widthPct = (g.pct / maxPct * 100).toFixed(1);
+            const showInside = g.pct >= 4;
+            const row = document.createElement('div');
+            row.className = 'bar-row';
+            row.innerHTML = `<div class="bar-label" title="${g.genus}">${g.genus}</div>
+                             <div class="bar-track">
+                               <div class="bar-fill" id="fig-bar-${i}" style="width:0%;background:${color}">
+                                 ${showInside ? `<span class="bar-pct">${g.pct}%</span>` : ''}
+                               </div>
+                             </div>
+                             ${!showInside ? `<span class="bar-pct outside">${g.pct}%</span>` : ''}`;
+            barContainer.appendChild(row);
+            setTimeout(() => { document.getElementById(`fig-bar-${i}`).style.width = widthPct + '%'; }, 50 + i * 40);
+        });
+    }
+
+    // Figure note
+    const note = document.getElementById('figure-note');
+    if (note && summaryData) {
+        note.textContent = `Data last updated: ${summaryData.last_updated}. Relative abundances shown are means across all ${summaryData.total_samples} samples after rarefaction.`;
+    }
 }
 
 // Populate state statistics grid
@@ -158,6 +256,8 @@ function populateParticipantsGrid() {
     container.innerHTML = '';
 
     if (!participantsIndex) return;
+
+    participantsIndex.sort((a, b) => parseInt(a.kit_id) - parseInt(b.kit_id));
 
     participantsIndex.forEach(participant => {
         const card = document.createElement('a');
