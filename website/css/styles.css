@@ -34,17 +34,17 @@ body {
 /* Top Nav */
 .top-nav {
     background-color: #1a3a5c;
-    padding: 6px 15px;
+    padding: 12px 30px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 18px;
+    gap: 36px;
 }
 
 .top-nav a {
     color: #cfe2f3;
     text-decoration: none;
-    font-size: 0.64rem;
+    font-size: 1.275rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -53,12 +53,6 @@ body {
 
 .top-nav a:hover {
     color: #ffffff;
-}
-
-.top-nav svg {
-    width: 12px;
-    height: 12px;
-    margin-right: 2px !important;
 }
 
 /* Funding statement */
