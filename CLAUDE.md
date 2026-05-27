@@ -58,13 +58,14 @@ All scripts and JSON outputs use **State** throughout. The metadata has a `State
 ## Genus Descriptions
 Brief public-friendly descriptions for the top 25 genera are stored in the `GENUS_DESCRIPTIONS` object in both `website/js/main.js` and `website/js/participant.js`. These appear as a subline beneath genus names in all taxa lists. To add or edit descriptions, update both files.
 
-## Functional Guilds (6 Categories)
+## Functional Guilds (7 Categories)
 1. Personal Care Product Degraders
 2. Moisture Lovers
 3. Disinfectant Survivalists
 4. Odor Producers
-5. Skin Commuters
-6. Oral Commuters
+5. Skin Associates
+6. Oral Associates
+7. Soil Associates
 
 ## Adding New Analysis
 1. Create new R script in `scripts/` following the numbered naming convention

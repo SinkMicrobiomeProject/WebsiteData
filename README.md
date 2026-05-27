@@ -93,12 +93,13 @@ The site is hosted on GitHub Pages at **sinkmicrobiome.org**. All pages share a 
 
 | Guild | Description |
 |-------|-------------|
-| Personal Care Product Degraders | Bacteria that break down soaps and surfactants |
-| Moisture Lovers | Water-loving bacteria thriving in humid sink environments |
-| Disinfectant Survivalists | Bacteria tolerant of household disinfectants |
-| Odor Producers | Bacteria producing volatile compounds |
-| Skin Commuters | Bacteria originating from human skin |
-| Oral Commuters | Bacteria originating from the mouth |
+| Personal Care Product Degraders | Bacteria that can break down soaps, shampoos, and other personal care products |
+| Moisture Lovers | Water-loving bacteria that thrive in the constantly wet environment of sink drains |
+| Disinfectant Survivalists | Bacteria with resistance to common household disinfectants and cleaning products |
+| Odor Producers | Bacteria that can produce volatile compounds, sometimes contributing to drain odors |
+| Skin Associates | Bacteria originally from human skin, transferred during hand washing |
+| Oral Associates | Bacteria from the mouth, introduced during tooth brushing and other oral hygiene activities |
+| Soil Associates | Bacteria commonly found in soil and plant root environments, entering the home through tap water and household dust |
 
 ## Analysis Pipeline
 
