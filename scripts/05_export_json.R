@@ -197,7 +197,11 @@ for (kit in kit_ids) {
           relative_abundance = top5_p$relative_abundance[i]
         )
       }),
-      total_taxa = sum(otu_relabund_percent[, p_sample] > 0)
+      total_taxa = {
+        present_otus <- rownames(otu_relabund_percent)[otu_relabund_percent[, p_sample] > 0]
+        length(unique(taxonomy$Genus[taxonomy$OTU_ID %in% present_otus &
+                                     taxonomy$Genus != "" & taxonomy$Genus != "__"]))
+      }
     )
 
     # Alpha diversity
