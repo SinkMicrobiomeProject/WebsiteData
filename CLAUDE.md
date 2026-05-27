@@ -37,19 +37,21 @@ website/ (HTML/JS frontend)
 1. `01_data_processing.R` - Load OTU/metadata, rarefaction (100k reads), filter low-abundance OTUs
 2. `02_alpha_diversity.R` - Richness, Shannon, Simpson indices with percentile rankings; summary by **State** (not county)
 3. `03_beta_diversity.R` - Bray-Curtis distances, within-kit similarity (drain vs countertop); comparisons by **State**
-4. `04_functional_guilds.R` - Map genera to 6 functional categories, calculate scores; merges on `State` (not County/Zipcode)
-5. `05_export_json.R` - Generate all JSON output for website; exports `states`, `taxa_by_state`, `top5_taxa_by_state` fields
+4. `04_functional_guilds.R` - Map genera to 7 functional categories, calculate scores; merges on `State` (not County/Zipcode)
+5. `05_export_json.R` - Generate all JSON output for website; exports `states`, `taxa_by_state`, `top5_taxa_by_state`, `similarity_scores` fields
 
 ### Key Output Files
-- `summary.json` - Landing page stats; uses `states`, `taxa_by_state`, `top5_taxa_by_state` keys
+- `summary.json` - Landing page stats; keys: `total_samples`, `total_taxa`, `last_updated`, `states`, `taxa_by_state`, `top5_taxa_by_state`, `similarity_scores`
 - `map_data.json` - Sample-level state data
 - `participants_index.json` - All kit IDs with state
-- `participants/kit_*.json` - Individual participant results; uses `state` (not `county`)
+- `participants/kit_*.json` - Individual participant results; uses `state` (not `county`); `total_taxa` counts unique genera (not OTUs)
 
 ### Website
-- `website/index.html` - Landing page with summary stats, bacteria by state, top taxa, participant lookup
+- `website/index.html` - Landing page: intro, summary stats, US bubble map, bacteria by state, phylum donut chart, top-15 genera bar chart, drain–countertop similarity strip chart, participant lookup grid, video embed, hypothesis link, donation teaser
 - `website/participant.html` - Individual kit results loaded dynamically from JSON
-- `website/microbes.html` - Full microbial community browser
+- `website/microbes.html` - Full microbial community browser (donut + bar chart)
+- `website/hypothesis.html` - Citizen scientist hypothesis submission form (formsubmit.co → sinkmicrobiome@duke.edu)
+- `website/donate.html` - Donation options: $10 kit, tiered swag ($25–$100), Duke giving portal instructions, disclaimers
 - JavaScript loads data from `../output/` relative to `website/` directory
 
 ## Terminology: State not County
@@ -100,18 +102,25 @@ Brief public-friendly descriptions for the top 25 genera are stored in the `GENU
 
 ## Website Details
 
-- `index.html` - Landing page: intro text, summary stats, bacteria by state, top taxa, participant lookup
-- `participant.html` - Individual kit results loaded dynamically from JSON
 - JavaScript loads data from `../output/` relative to `website/` directory
 - **Critical:** `participant.html` must contain `<input type="hidden" id="form-kit-id" value="">` — removing it crashes `participant.js`
-- **Top nav:** Links to PreMiEr (https://premier-microbiome.org/), LinkedIn, and Bluesky appear above the header
+- **Top nav:** Links to PreMiEr, LinkedIn, Bluesky, and **Donate** (`donate.html`) appear above the header on all 5 pages
+- **Genus descriptions:** Public-friendly one-liners stored in `GENUS_DESCRIPTIONS` in both `main.js` and `participant.js` — update both files if editing
+- **Guild display names:** Defined in `GUILD_INFO` in `participant.js`; internal R column names (`Skin_commuter`, `Oral_commuter`, `Soil_associate`) differ from display names (Skin Associates, Oral Associates, Soil Associates)
+- **Participant cards:** Show kit number only (no "Kit" label prefix); font-size set in `.participant-card .kit-id`
+- **Similarity strip chart:** Auto-hidden if `summaryData.similarity_scores` is absent or empty (handles old JSON gracefully)
+- **Bubble map:** Alaska and Hawaii use manual inset positions (`STATE_INSET` in `main.js`); all other states use equirectangular projection
 
 ### HTML Element IDs (must match JS)
 - `id="total-states"` — state count stat card
 - `id="state-grid"` — bacteria-by-state grid
+- `id="us-bubble-map"` — SVG element for sample distribution map
+- `id="sim-chart"` — SVG element for drain–countertop similarity strip chart
+- `id="similarity-summary-section"` — wrapping section (hidden when no data)
 - `id="state-name"` — participant's state in participant.html
 - `id="same-state-value"` / `id="other-state-value"` — beta diversity cards
 - `id="state-compare"` — state name label in beta section
+- `id="kit-id"` — kit number in participant header
 
 ### Local Preview
 ```bash
