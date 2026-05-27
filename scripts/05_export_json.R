@@ -107,15 +107,33 @@ for (state in unique(metadata$State)) {
   }
 }
 
+# Build per-kit drain-countertop similarity scores for main page chart
+sim_scores <- lapply(kit_ids, function(kit) {
+  kit_meta <- metadata[metadata$Kit.ID == kit, ][1, ]
+  kit_sim  <- beta_results$within_kit_similarity[
+                beta_results$within_kit_similarity$Kit_ID == kit, ]
+  if (nrow(kit_sim) > 0 && !is.na(kit_sim$similarity[1])) {
+    list(
+      kit_id     = as.character(kit),
+      state      = as.character(kit_meta$State),
+      similarity = round(kit_sim$similarity[1], 3)
+    )
+  } else {
+    NULL
+  }
+})
+sim_scores <- sim_scores[!sapply(sim_scores, is.null)]
+
 # Create summary JSON
 summary_data <- list(
-  last_updated = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
-  total_samples = length(tailpiece_samples),
-  total_taxa = total_taxa,
-  taxa_by_state = taxa_by_state,
+  last_updated      = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
+  total_samples     = length(tailpiece_samples),
+  total_taxa        = total_taxa,
+  taxa_by_state     = taxa_by_state,
   top5_taxa_overall = top5_overall,
   top5_taxa_by_state = top5_by_state,
-  states = unique(metadata$State)
+  states            = unique(metadata$State),
+  similarity_scores = sim_scores
 )
 
 write(toJSON(summary_data, auto_unbox = TRUE, pretty = TRUE),

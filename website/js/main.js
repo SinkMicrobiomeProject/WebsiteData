@@ -160,6 +160,9 @@ function populatePage() {
 
     // Render microbial community figure
     populateFigure();
+
+    // Drain–countertop similarity strip chart
+    populateSimilarityChart();
 }
 
 function populateFigure() {
@@ -232,6 +235,107 @@ function populateFigure() {
     const note = document.getElementById('figure-note');
     if (note && summaryData) {
         note.textContent = `Data last updated: ${summaryData.last_updated}. Relative abundances shown are means across all ${summaryData.total_samples} samples after rarefaction.`;
+    }
+}
+
+// Drain–countertop similarity strip chart
+function populateSimilarityChart() {
+    const svg    = document.getElementById('sim-chart');
+    const tip    = document.getElementById('sim-tooltip');
+    const section = document.getElementById('similarity-summary-section');
+
+    const scores = (summaryData?.similarity_scores || [])
+        .filter(d => d.similarity != null)
+        .sort((a, b) => a.similarity - b.similarity);
+
+    if (!svg || scores.length === 0) {
+        if (section) section.style.display = 'none';
+        return;
+    }
+
+    function el(tag, attrs) {
+        const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+        for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+        return e;
+    }
+
+    const PALETTE = ['#2c6ea6','#27ae60','#e67e22','#8e44ad','#e74c3c','#16a085','#f39c12','#95a5a6'];
+    const stateList = [...new Set(scores.map(d => d.state))].sort();
+    const colorOf = {};
+    stateList.forEach((s, i) => colorOf[s] = PALETTE[i % PALETTE.length]);
+
+    // Layout constants
+    const axX1 = 60, axX2 = 740, axY = 100, dotR = 7;
+    const xScale = v => axX1 + v * (axX2 - axX1);
+
+    // Axis line
+    svg.appendChild(el('line', {x1:axX1, y1:axY, x2:axX2, y2:axY, stroke:'#ccc', 'stroke-width':1.5}));
+
+    // Ticks and labels
+    [0, 0.25, 0.5, 0.75, 1.0].forEach(v => {
+        const x = xScale(v);
+        svg.appendChild(el('line', {x1:x, y1:axY-4, x2:x, y2:axY+4, stroke:'#aaa', 'stroke-width':1.5}));
+        const lbl = el('text', {x, y:axY+18, 'text-anchor':'middle', fill:'#666',
+            'font-size':11, 'font-family':'sans-serif'});
+        lbl.textContent = Math.round(v * 100) + '%';
+        svg.appendChild(lbl);
+    });
+
+    // Axis description
+    const axDesc = el('text', {x:(axX1+axX2)/2, y:axY+34, 'text-anchor':'middle',
+        fill:'#999', 'font-size':10, 'font-family':'sans-serif', 'font-style':'italic'});
+    axDesc.textContent = 'Drain–countertop community similarity (0 = completely different, 100% = identical)';
+    svg.appendChild(axDesc);
+
+    // Mean dashed line
+    const mean = scores.reduce((s, d) => s + d.similarity, 0) / scores.length;
+    const mx = xScale(mean);
+    svg.appendChild(el('line', {x1:mx, y1:axY-48, x2:mx, y2:axY, stroke:'#888',
+        'stroke-width':1.5, 'stroke-dasharray':'4 3'}));
+    const mLbl = el('text', {x:mx, y:axY-52, 'text-anchor':'middle',
+        fill:'#888', 'font-size':10, 'font-family':'sans-serif'});
+    mLbl.textContent = `mean ${Math.round(mean * 100)}%`;
+    svg.appendChild(mLbl);
+
+    // Dots (sine jitter to avoid overlap)
+    scores.forEach((d, i) => {
+        const x = xScale(d.similarity);
+        const y = axY + Math.sin(i * 1.9) * 18 - 28;
+        const color = colorOf[d.state] || '#95a5a6';
+
+        const circle = el('circle', {cx:x, cy:y, r:dotR, fill:color,
+            stroke:'#fff', 'stroke-width':1.5, opacity:0.85});
+        circle.style.cursor = 'pointer';
+        svg.appendChild(circle);
+
+        if (tip) {
+            circle.addEventListener('mouseenter', () => {
+                tip.innerHTML = `<strong>Kit ${d.kit_id}</strong>&nbsp;&nbsp;${d.state}<br>Similarity: ${Math.round(d.similarity * 100)}%`;
+                tip.style.display = 'block';
+            });
+            circle.addEventListener('mousemove', e => {
+                const rect = svg.closest('.sim-chart-container').getBoundingClientRect();
+                tip.style.left = (e.clientX - rect.left + 14) + 'px';
+                tip.style.top  = (e.clientY - rect.top  - 64) + 'px';
+            });
+            circle.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+        }
+    });
+
+    // State legend (if more than one state)
+    if (stateList.length > 1) {
+        const legY = 158;
+        let lx = axX1;
+        stateList.forEach(s => {
+            if (lx + 10 > axX2) return;
+            svg.appendChild(el('circle', {cx:lx+6, cy:legY, r:6,
+                fill:colorOf[s], opacity:0.85}));
+            const lt = el('text', {x:lx+17, y:legY+4, fill:'#555',
+                'font-size':11, 'font-family':'sans-serif'});
+            lt.textContent = s;
+            svg.appendChild(lt);
+            lx += s.length * 7 + 28;
+        });
     }
 }
 
