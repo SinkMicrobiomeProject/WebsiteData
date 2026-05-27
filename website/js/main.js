@@ -63,6 +63,52 @@ const GENERA_FIG = [
 const PHYLUM_COLOR = { "Pseudomonadota": "#2c6ea6", "Bacillota": "#27ae60",
                        "Bacteroidota": "#e67e22", "Actinomycetota": "#8e44ad" };
 
+// State center coordinates [lat, lon] for bubble map
+const STATE_CENTERS = {
+    'Alabama':        [32.8, -86.8],  'Arizona':        [34.3, -111.1],
+    'Arkansas':       [35.0, -92.4],  'California':     [36.8, -119.4],
+    'Colorado':       [39.0, -105.5], 'Connecticut':    [41.7, -72.7],
+    'Delaware':       [39.0, -75.5],  'Florida':        [27.8, -81.6],
+    'Georgia':        [32.2, -83.4],  'Idaho':          [44.4, -114.6],
+    'Illinois':       [40.0, -89.2],  'Indiana':        [40.3, -86.1],
+    'Iowa':           [42.0, -93.6],  'Kansas':         [38.5, -98.4],
+    'Kentucky':       [37.5, -85.3],  'Louisiana':      [31.1, -91.8],
+    'Maine':          [45.4, -69.0],  'Maryland':       [39.1, -76.8],
+    'Massachusetts':  [42.4, -71.4],  'Michigan':       [44.3, -85.4],
+    'Minnesota':      [46.7, -93.9],  'Mississippi':    [32.7, -89.7],
+    'Missouri':       [38.5, -92.3],  'Montana':        [47.0, -110.4],
+    'Nebraska':       [41.5, -99.9],  'Nevada':         [38.5, -117.1],
+    'New Hampshire':  [44.0, -71.6],  'New Jersey':     [40.1, -74.4],
+    'New Mexico':     [34.5, -106.0], 'New York':       [43.0, -75.5],
+    'North Carolina': [35.6, -79.4],  'North Dakota':   [47.5, -100.5],
+    'Ohio':           [40.4, -82.8],  'Oklahoma':       [35.6, -97.0],
+    'Oregon':         [44.6, -122.1], 'Pennsylvania':   [40.6, -77.2],
+    'Rhode Island':   [41.7, -71.5],  'South Carolina': [34.0, -81.0],
+    'South Dakota':   [44.4, -100.2], 'Tennessee':      [35.9, -86.7],
+    'Texas':          [31.5, -99.3],  'Utah':           [39.3, -111.1],
+    'Vermont':        [44.6, -72.7],  'Virginia':       [37.8, -78.2],
+    'Washington':     [47.4, -120.5], 'West Virginia':  [38.9, -80.5],
+    'Wisconsin':      [44.5, -89.6],  'Wyoming':        [43.0, -107.6],
+    'Alaska':         null,           'Hawaii':         null
+};
+
+// Inset pixel positions (SVG coords) for AK and HI
+const STATE_INSET = { 'Alaska': {x: 90, y: 450}, 'Hawaii': {x: 240, y: 470} };
+
+// State name → 2-letter abbreviation
+const STATE_ABBR = {
+    'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',
+    'Colorado':'CO','Connecticut':'CT','Delaware':'DE','Florida':'FL','Georgia':'GA',
+    'Hawaii':'HI','Idaho':'ID','Illinois':'IL','Indiana':'IN','Iowa':'IA','Kansas':'KS',
+    'Kentucky':'KY','Louisiana':'LA','Maine':'ME','Maryland':'MD','Massachusetts':'MA',
+    'Michigan':'MI','Minnesota':'MN','Mississippi':'MS','Missouri':'MO','Montana':'MT',
+    'Nebraska':'NE','Nevada':'NV','New Hampshire':'NH','New Jersey':'NJ','New Mexico':'NM',
+    'New York':'NY','North Carolina':'NC','North Dakota':'ND','Ohio':'OH','Oklahoma':'OK',
+    'Oregon':'OR','Pennsylvania':'PA','Rhode Island':'RI','South Carolina':'SC',
+    'South Dakota':'SD','Tennessee':'TN','Texas':'TX','Utah':'UT','Vermont':'VT',
+    'Virginia':'VA','Washington':'WA','West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY'
+};
+
 // Global data storage
 let summaryData = null;
 let participantsIndex = null;
@@ -102,6 +148,9 @@ function populatePage() {
     document.getElementById('total-taxa').textContent = summaryData.total_taxa;
     document.getElementById('total-states').textContent = summaryData.states.length;
     document.getElementById('last-updated').textContent = summaryData.last_updated;
+
+    // Populate bubble map
+    populateBubbleMap();
 
     // Populate state grid
     populateStateGrid();
@@ -184,6 +233,112 @@ function populateFigure() {
     if (note && summaryData) {
         note.textContent = `Data last updated: ${summaryData.last_updated}. Relative abundances shown are means across all ${summaryData.total_samples} samples after rarefaction.`;
     }
+}
+
+// Draw US bubble map — circles sized by sqrt(n_samples)
+function populateBubbleMap() {
+    const svg = document.getElementById('us-bubble-map');
+    const tooltip = document.getElementById('map-tooltip');
+    if (!svg || !summaryData || !summaryData.taxa_by_state) return;
+
+    // Project lat/lon onto 860×520 SVG (contiguous US only)
+    function proj(lat, lon) {
+        return {
+            x: Math.round((lon + 128) / 63 * 760 + 50),
+            y: Math.round((50 - lat) / 28 * 420 + 20)
+        };
+    }
+
+    function el(tag, attrs) {
+        const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+        for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+        return e;
+    }
+
+    // Collect sample counts
+    const counts = {};
+    for (const [state, data] of Object.entries(summaryData.taxa_by_state)) {
+        counts[state] = data.n_samples;
+    }
+    const maxN = Math.max(...Object.values(counts), 1);
+    const MAX_R = 28, MIN_R = 6;
+
+    // Background
+    svg.appendChild(el('rect', {x:0, y:0, width:860, height:520, fill:'#f0f6fb', rx:8}));
+
+    // Inset box for AK + HI
+    svg.appendChild(el('rect', {x:12, y:398, width:318, height:110, fill:'#e8f0f8', stroke:'#c0d0e0', 'stroke-width':1, rx:5}));
+    const inkLabel = el('text', {x:171, y:518, 'text-anchor':'middle', fill:'#aaa', 'font-size':'9', 'font-family':'sans-serif'});
+    inkLabel.textContent = 'AK  ·  HI (inset)';
+    svg.appendChild(inkLabel);
+
+    // Draw each state
+    for (const [state, coords] of Object.entries(STATE_CENTERS)) {
+        const n = counts[state] || 0;
+        const pos = coords ? proj(coords[0], coords[1]) : STATE_INSET[state];
+        if (!pos) continue;
+
+        const r = n > 0 ? MIN_R + Math.sqrt(n / maxN) * (MAX_R - MIN_R) : 4;
+        const rnd = Math.round(r * 10) / 10;
+
+        const circle = el('circle', {
+            cx: pos.x, cy: pos.y, r: rnd,
+            fill: n > 0 ? 'rgba(44,110,166,0.75)' : 'rgba(180,200,215,0.45)',
+            stroke: n > 0 ? '#1a4b8c' : '#b0c4d4',
+            'stroke-width': n > 0 ? 1.5 : 0.8
+        });
+        svg.appendChild(circle);
+
+        // Abbreviation label inside circle (only when big enough)
+        const abbr = STATE_ABBR[state] || '';
+        if (n > 0 && r >= 11 && abbr) {
+            const lbl = el('text', {
+                x: pos.x, y: pos.y,
+                'text-anchor':'middle', 'dominant-baseline':'central',
+                fill:'#fff', 'font-size': Math.min(Math.round(r * 0.65), 11),
+                'font-family':'sans-serif', 'font-weight':'bold',
+                'pointer-events':'none'
+            });
+            lbl.textContent = abbr;
+            svg.appendChild(lbl);
+        }
+
+        // Tooltip on hover
+        if (n > 0 && tooltip) {
+            circle.style.cursor = 'pointer';
+            circle.addEventListener('mouseenter', () => {
+                tooltip.textContent = `${state}: ${n} sample${n !== 1 ? 's' : ''}`;
+                tooltip.style.display = 'block';
+            });
+            circle.addEventListener('mousemove', e => {
+                const rect = svg.closest('.map-container').getBoundingClientRect();
+                tooltip.style.left = (e.clientX - rect.left + 14) + 'px';
+                tooltip.style.top  = (e.clientY - rect.top  - 38) + 'px';
+            });
+            circle.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
+        }
+    }
+
+    // Legend (bottom-right)
+    const lx = 680, ly = 400;
+    svg.appendChild(el('rect', {x:lx-8, y:ly-22, width:168, height:108, fill:'#fff', stroke:'#dde', 'stroke-width':1, rx:7, opacity:0.92}));
+    const ltitle = el('text', {x:lx+76, y:ly-5, 'text-anchor':'middle', fill:'#555', 'font-size':10, 'font-family':'sans-serif', 'font-weight':'bold'});
+    ltitle.textContent = 'Samples per state';
+    svg.appendChild(ltitle);
+
+    const legendVals = [1, Math.max(1, Math.round(maxN / 2)), maxN];
+    const unique = [...new Set(legendVals)];
+    unique.forEach((n, i) => {
+        const r = MIN_R + Math.sqrt(n / maxN) * (MAX_R - MIN_R);
+        const cx = lx + 18 + i * 56;
+        const cy = ly + 56;
+        svg.appendChild(el('circle', {cx, cy, r: Math.round(r*10)/10, fill:'rgba(44,110,166,0.75)', stroke:'#1a4b8c', 'stroke-width':1.5}));
+        const lt = el('text', {x:cx, y: cy + r + 12, 'text-anchor':'middle', fill:'#666', 'font-size':9, 'font-family':'sans-serif'});
+        lt.textContent = n;
+        svg.appendChild(lt);
+    });
 }
 
 // Populate state statistics grid

@@ -161,12 +161,18 @@ body {
 .video-section {
     text-align: left;
 }
+.video-section h2 {
+    text-align: left;
+}
+.video-section p {
+    text-align: left;
+}
 .video-embed {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    max-width: 800px;
+    max-width: 640px;
     margin: 16px auto 0;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -177,6 +183,33 @@ body {
     width: 80%; height: 80%;
     border: 0;
     border-radius: 10px;
+}
+
+/* Bubble map */
+.map-section {
+    overflow: hidden;
+}
+.map-container {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+}
+#us-bubble-map {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.map-tooltip {
+    position: absolute;
+    background: rgba(26, 75, 140, 0.92);
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    pointer-events: none;
+    z-index: 100;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 @media (max-width: 600px) {
     .bar-label { width: 100px; font-size: 0.75em; }
