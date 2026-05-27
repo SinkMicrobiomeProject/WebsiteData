@@ -34,7 +34,7 @@ A nationwide citizen science initiative exploring bacterial communities in house
 │   ├── index.html                    # Landing page
 │   ├── participant.html              # Individual kit results (loaded dynamically)
 │   ├── microbes.html                 # Full microbial community browser
-│   ├── hypothesis.html               # Citizen scientist hypothesis submission form
+│   ├── hypothesis.html               # Community scientist hypothesis submission form
 │   ├── donate.html                   # Donation options and instructions
 │   ├── assets/
 │   │   └── logo.png
