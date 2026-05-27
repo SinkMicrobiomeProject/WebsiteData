@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-26 16:38:19",
+  "last_updated": "2026-05-27 14:44:41",
   "total_samples": 10,
   "total_taxa": 142,
   "taxa_by_state": {
@@ -161,5 +161,47 @@
       }
     ]
   },
-  "states": ["North Carolina", "Michigan", "California", "Georgia"]
+  "states": ["North Carolina", "Michigan", "California", "Georgia"],
+  "similarity_scores": [
+    {
+      "kit_id": "12",
+      "state": "Michigan",
+      "similarity": 0.494
+    },
+    {
+      "kit_id": "29",
+      "state": "North Carolina",
+      "similarity": 0.588
+    },
+    {
+      "kit_id": "44",
+      "state": "California",
+      "similarity": 0.574
+    },
+    {
+      "kit_id": "56",
+      "state": "California",
+      "similarity": 0.399
+    },
+    {
+      "kit_id": "58",
+      "state": "California",
+      "similarity": 0.287
+    },
+    {
+      "kit_id": "65",
+      "state": "Michigan",
+      "similarity": 0.515
+    },
+    {
+      "kit_id": "70",
+      "state": "Georgia",
+      "similarity": 0.336
+    },
+    {
+      "kit_id": "8",
+      "state": "North Carolina",
+      "similarity": 0.298
+    }
+  ]
 }
