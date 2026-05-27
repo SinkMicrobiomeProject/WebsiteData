@@ -804,7 +804,7 @@ section h2 {
     margin: 16px 0;
     counter-reset: dstep;
 }
-.donate-steps li {
+.donate-steps > li {
     counter-increment: dstep;
     display: flex;
     gap: 14px;
@@ -812,7 +812,7 @@ section h2 {
     margin-bottom: 14px;
     font-size: 0.95rem;
 }
-.donate-steps li::before {
+.donate-steps > li::before {
     content: counter(dstep);
     background: var(--primary-blue);
     color: #fff;
@@ -826,6 +826,14 @@ section h2 {
     font-size: 0.82rem;
     flex-shrink: 0;
     margin-top: 2px;
+}
+.donate-steps > li > ul {
+    margin: 8px 0 0 0;
+    padding-left: 18px;
+    font-size: 0.9rem;
+}
+.donate-steps > li > ul > li {
+    margin-bottom: 4px;
 }
 .alert-box {
     background: #fff8e1;
